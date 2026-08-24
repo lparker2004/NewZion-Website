@@ -16,6 +16,7 @@
       <li><a href="index.html" class="">Home</a></li>
       <li><a href="about.html" class="active">About Us</a></li>
       <li><a href="worship.html" class="">Worship</a></li>
+      <li><a href="events.html" class="">Events</a></li>
       <li><a href="teaching.html" class="">Teaching</a></li>
       <li><a href="give.html" class="">Give</a></li>
       <li><a href="visit.html" class="">Visit Us</a></li>
@@ -125,6 +126,7 @@
           <li><a href="history.html">Our History</a></li>
           <li><a href="leadership.html">Leadership</a></li>
           <li><a href="worship.html">Worship</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="teaching.html">Teaching &amp; Equipping</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="visit.html">Visit Us</a></li>
@@ -148,12 +150,21 @@
     </div>
   </div>
 </footer>
+<a href="romanroad.html" class="floating-salvation" id="floating-salvation">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M5 7h14" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+  <span>Path to Salvation</span>
+</a>
+
 <div class="lightbox-overlay" id="lightbox">
   <span class="lightbox-close" id="lightbox-close">&times;</span>
   <img src="" alt="" id="lightbox-img">
 </div>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  var floatBtn = document.getElementById('floating-salvation');
+  if (floatBtn && /romanroad\.html/.test(window.location.pathname)) {
+    floatBtn.style.display = 'none';
+  }
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
   if (toggle && links) {

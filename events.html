@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Leadership | New Zion Baptist Church</title>
-<meta name="description" content="Meet the pastoral leadership of New Zion Baptist Church.">
+<title>Events &amp; Calendar | New Zion Baptist Church</title>
+<meta name="description" content="See upcoming events, services, and gatherings at New Zion Baptist Church.">
 <link rel="stylesheet" href="style-v2.css">
 </head>
 <body>
@@ -14,9 +14,9 @@
     <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
     <ul class="nav-links">
       <li><a href="index.html" class="">Home</a></li>
-      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="about.html" class="">About Us</a></li>
       <li><a href="worship.html" class="">Worship</a></li>
-      <li><a href="events.html" class="">Events</a></li>
+      <li><a href="events.html" class="active">Events</a></li>
       <li><a href="teaching.html" class="">Teaching</a></li>
       <li><a href="give.html" class="">Give</a></li>
       <li><a href="visit.html" class="">Visit Us</a></li>
@@ -24,54 +24,39 @@
     </ul>
   </div>
 </header>
-<section class="page-hero">
+<section class="page-hero" style="text-align:center;">
   <div class="container">
-    <span class="eyebrow">Leadership</span>
-    <h1>Shepherds Across Generations</h1>
-    <p>New Zion has been guided by faithful leadership since 1983 — each pastor building on the foundation laid before them.</p>
+    <span class="eyebrow" style="justify-content:center;">Events &amp; Calendar</span>
+    <h1>What's Happening at New Zion</h1>
+    <p style="max-width:56ch; margin:0 auto;">Sunday worship, Wednesday Bible study, and everything else on the calendar — always current, straight from our church calendar.</p>
   </div>
 </section>
 
 <section>
+  <div class="container">
+    <div class="calendar-frame">
+      <iframe src="https://calendar.google.com/calendar/embed?src=c_d55e8604353038a9c5b3f100e73ed22a15018a358ee84ace83188ab5f539ce88%40group.calendar.google.com&ctz=America%2FNew_York" style="border:0" width="800" height="650" frameborder="0" scrolling="no" title="New Zion Baptist Church Events Calendar"></iframe>
+    </div>
+    <div style="text-align:center; margin-top:22px;">
+      <a href="https://calendar.google.com/calendar/render?cid=c_d55e8604353038a9c5b3f100e73ed22a15018a358ee84ace83188ab5f539ce88%40group.calendar.google.com" target="_blank" class="btn btn-outline">Add to Your Google Calendar</a>
+    </div>
+  </div>
+</section>
+
+<section class="info-strip">
   <div class="container grid grid-3">
-    <div class="card" style="text-align:center;">
-      <div class="arch-frame small has-photo" style="margin-bottom:20px;">
-        <img src="pastor-alphonse.jpg" alt="Pastor Alphonse Certain, Jr.">
-      </div>
-      <span class="card-meta">Founding Pastor · 1983–2017</span>
-      <h3>Pastor Alphonse Certain, Jr.</h3>
-      <p>Founder and first Senior Pastor of New Zion Baptist Church. For over three decades he shepherded this congregation with wisdom, determination, and a servant's heart.</p>
-      <a href="history.html" class="btn btn-outline">Read His Story</a>
-    </div>
-
-    <div class="card" style="text-align:center; border-top-color: var(--burgundy);">
-      <div class="arch-frame small has-photo" style="margin-bottom:20px;">
-        <img src="pastor-certain.png" alt="Rev. Major L. Certain">
-      </div>
-      <span class="card-meta">Senior Pastor · 2017–Present</span>
-      <h3>Rev. Major L. Certain</h3>
-      <p>A mighty woman of God whose desire has always been that people know God's Word in their minds, store it in their hearts, and demonstrate it to the world.</p>
-      <a href="history.html" class="btn btn-outline">Read Her Story</a>
-    </div>
-
-    <div class="card" style="text-align:center;">
-      <div class="arch-frame small has-photo" style="margin-bottom:20px;">
-        <img src="pastor-parker.jpg" alt="Rev. Lloyd Parker, Jr.">
-      </div>
-      <span class="card-meta">Incoming Senior Pastor</span>
-      <h3>Rev. Lloyd Parker, Jr.</h3>
-      <p>Currently serving as Assistant Pastor and Wednesday Bible Study teacher, Rev. Parker and his wife Tanaia joined New Zion as members before answering the call to pastoral ministry here.</p>
-      <a href="history.html" class="btn btn-outline">Read His Story</a>
-    </div>
+    <div><h4>Sunday Worship</h4><p>11:15 AM</p></div>
+    <div><h4>Wednesday Bible Study</h4><p>7:00 – 8:00 PM</p></div>
+    <div><h4>Location</h4><p style="font-size:1rem;">5400 Call Place SE, Washington D.C.</p></div>
   </div>
 </section>
 
 <section class="section-alt text-center" style="text-align:center;">
   <div class="container">
-    <span class="eyebrow" style="justify-content:center;">One Family, Three Chapters</span>
-    <h2>See How This Story Unfolded</h2>
-    <p style="max-width:56ch; margin:0 auto 24px;">From a school cafeteria in 1983 to the sanctuary on Call Place SE today — walk through the full history of New Zion, pastor by pastor.</p>
-    <a href="history.html" class="btn btn-burgundy">Our History</a>
+    <span class="eyebrow" style="justify-content:center;">Questions About an Event?</span>
+    <h2>We're Happy to Help</h2>
+    <p style="max-width:52ch; margin:0 auto 24px;">If something on the calendar needs clarifying, or you'd like to bring a group, reach out and we'll get you what you need.</p>
+    <a href="connect.html" class="btn btn-burgundy">Contact Us</a>
   </div>
 </section>
 
@@ -151,7 +136,6 @@
   document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
 </script>
-
 
 </body>
 </html>
