@@ -6,7 +6,7 @@
 | File | Purpose |
 |---|---|
 | `index.html` | Home |
-| `about.html` | Mission, vision, the four-step progression |
+| `about.html` | Mission, vision, the four-step progression, link to the full Roadmap graphic |
 | `history.html` | Pastor-by-pastor story: founding, present, incoming |
 | `leadership.html` | Current pastoral leadership cards |
 | `worship.html` | Sunday livestream, online-worshipper info, service times |
@@ -15,7 +15,7 @@
 | `give.html` | Givelify link and giving info |
 | `visit.html` | Address, map, service times, what to expect, visitor form |
 | `connect.html` | MailerLite signup, prayer request, membership interest, general contact, testimony submissions |
-| `lifeline.html` ("Need Help?") | Crisis/pastoral support form, prominent 911/988 emergency banner, links to Path to Salvation |
+| `lifeline.html` ("Need Help?") | Crisis/pastoral support form, prominent 911/988 emergency banner, explicit statement of what the church offers vs. medical care, links to Path to Salvation |
 | `romanroad.html` | The Roman Road to Salvation — dedicated gospel page, with a testimony-sharing CTA |
 
 `style-v2.css` is the one shared stylesheet for all 12 pages. Every image referenced by the HTML files must stay in this same folder — don't move things into subfolders, or the site will render unstyled ("shell page" look).
@@ -26,7 +26,7 @@ These pieces are **duplicated in every single HTML file** rather than pulled fro
 1. **Header/nav** — logo, nav links, mobile hamburger menu
 2. **Footer** — logo, Navigate links, address/service times, copyright
 3. **Bottom-of-page script block** — powers three things on every page:
-   - The **lightbox** (click-to-enlarge on images tagged `class="lightbox-trigger"`)
+   - The **lightbox** (click-to-enlarge) — works two ways: automatically on any image inside a `class="lightbox-trigger"` wrapper, or from any button/link with `data-lightbox-src="filename.png"` (used for the "See the Full Roadmap" buttons on `about.html`, which pop up `roadmap.png` without needing it embedded on the page itself)
    - The **floating "Path to Salvation" button** (bottom-right, hidden only on `romanroad.html`)
    - The mobile nav toggle and auto-updating copyright year
 
@@ -50,7 +50,7 @@ The "Share My Testimony" button on `romanroad.html` links to the general contact
 ## Adding a new photo
 1. Drop the image file into this same folder (no subfolders).
 2. In the relevant page, find the `.arch-frame` div you want to fill and add `<img src="your-file.jpg" alt="...">` inside it.
-3. Add `class="lightbox-trigger"` to that same `.arch-frame` div if the image has small text that should be viewable full-size on click.
+3. Add `class="lightbox-trigger"` to that same `.arch-frame` div if the image has small text that should be viewable full-size on click — or, if you don't want it embedded on the page at all (just a "Learn More"-style popup), use a button with `data-lightbox-src="your-file.jpg"` instead, following the pattern on `about.html`.
 
 ## Hosting
 Live on GitHub Pages, custom domain `newzionbaptist.org` (no `www`, which redirects to the bare domain). DNS is configured at GoDaddy with four A records pointing to GitHub's IPs. See GitHub repo Settings → Pages for domain/HTTPS status.

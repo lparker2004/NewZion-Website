@@ -191,11 +191,20 @@
   }
   var lightbox = document.getElementById('lightbox');
   var lightboxImg = document.getElementById('lightbox-img');
+  function openLightbox(src, alt) {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || '';
+    lightbox.classList.add('open');
+  }
   document.querySelectorAll('.lightbox-trigger img').forEach(function (img) {
     img.parentElement.addEventListener('click', function () {
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
-      lightbox.classList.add('open');
+      openLightbox(img.src, img.alt);
+    });
+  });
+  document.querySelectorAll('[data-lightbox-src]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      openLightbox(el.getAttribute('data-lightbox-src'), el.getAttribute('data-lightbox-alt') || '');
     });
   });
   function closeLightbox() { lightbox.classList.remove('open'); lightboxImg.src=''; }
