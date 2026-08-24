@@ -19,7 +19,7 @@
       <li><a href="teaching.html" class="">Teaching</a></li>
       <li><a href="give.html" class="">Give</a></li>
       <li><a href="visit.html" class="">Visit Us</a></li>
-      <li><a href="lifeline.html" class="lifeline-link">I Need Someone</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
     </ul>
   </div>
 </header>
@@ -34,7 +34,7 @@
         <a href="teaching.html" class="btn btn-outline">Learn &amp; Grow</a>
       </div>
     </div>
-    <div class="arch-frame has-photo">
+    <div class="arch-frame has-photo lightbox-trigger">
       <img src="hero-main.png" alt="New Zion Baptist Church mission — teaching, equipping, training, transforming lives">
     </div>
   </div>
@@ -139,7 +139,7 @@
     <p style="max-width:720px; font-size:0.88rem;">Your message is anonymous. Your name is optional. A real person reads every message and responds within 24 hours.</p>
     <div style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px;">
       <a href="lifeline.html" class="btn btn-burgundy">Send a Private Message</a>
-      <a href="lifeline.html" class="btn btn-outline">Learn More</a>
+      <a href="romanroad.html" class="btn btn-outline">Path to Salvation</a>
     </div>
     <p style="font-size:0.82rem;">If you are in immediate crisis, contact the <a href="https://988lifeline.org" target="_blank" style="color:var(--burgundy); text-decoration:underline;">988 Suicide &amp; Crisis Lifeline</a> by calling or texting <strong>988</strong>.</p>
   </div>
@@ -184,7 +184,8 @@
           <li><a href="teaching.html">Teaching &amp; Equipping</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="visit.html">Visit Us</a></li>
-          <li><a href="lifeline.html">The Lifeline</a></li>
+          <li><a href="lifeline.html">Need Help?</a></li>
+          <li><a href="romanroad.html">Path to Salvation</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -199,10 +200,14 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
-      <a href="lifeline.html">I Need Someone &rarr;</a>
+      <a href="lifeline.html">Need Help? &rarr;</a>
     </div>
   </div>
 </footer>
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+  <img src="" alt="" id="lightbox-img">
+</div>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   var toggle = document.querySelector('.nav-toggle');
@@ -213,7 +218,21 @@
       toggle.setAttribute('aria-expanded', links.classList.contains('open'));
     });
   }
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.lightbox-trigger img').forEach(function (img) {
+    img.parentElement.addEventListener('click', function () {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox() { lightbox.classList.remove('open'); lightboxImg.src=''; }
+  lightbox.addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
 </script>
+
 
 </body>
 </html>

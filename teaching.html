@@ -16,10 +16,11 @@
       <li><a href="index.html" class="">Home</a></li>
       <li><a href="about.html" class="">About Us</a></li>
       <li><a href="worship.html" class="">Worship</a></li>
+      <li><a href="events.html" class="">Events</a></li>
       <li><a href="teaching.html" class="active">Teaching</a></li>
       <li><a href="give.html" class="">Give</a></li>
       <li><a href="visit.html" class="">Visit Us</a></li>
-      <li><a href="lifeline.html" class="lifeline-link">I Need Someone</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
     </ul>
   </div>
 </header>
@@ -33,12 +34,8 @@
 
 <section>
   <div class="container grid grid-2" style="align-items:center;">
-    <div class="arch-frame has-photo" style="background:var(--burgundy-deep);">
-      <div class="arch-caption" style="min-height:320px;">
-        <span class="eyebrow" style="color:var(--gold-light); justify-content:center;">Current Series</span>
-        <h2 style="color:var(--white); margin-bottom:4px;">Judah: The Forgotten Son</h2>
-        <span style="color:var(--gold-light); font-size:0.78rem; letter-spacing:0.08em; text-transform:uppercase;">Genesis 37–44</span>
-      </div>
+    <div class="arch-frame has-photo lightbox-trigger" style="background:var(--white);">
+      <img src="judah-mirror.png" alt="Judah: The Mirror of His Own Heart — how God used Judah's own choices to confront him with truth, Genesis 37 and 38">
     </div>
     <div>
       <span class="eyebrow">Current Series</span>
@@ -118,10 +115,13 @@
     <div class="section-head center">
       <span class="eyebrow" style="justify-content:center;">Teaching Resources</span>
       <h2>The Roman Road to Salvation</h2>
-      <p>A simple, Scripture-by-Scripture path through the gospel — one of the resources growing our teaching library.</p>
+      <p>A simple, Scripture-by-Scripture path through the gospel — one of the most important resources in our teaching library.</p>
     </div>
-    <div class="arch-frame has-photo" style="max-width:900px; margin:0 auto; background:var(--white);">
+    <div class="arch-frame has-photo lightbox-trigger" style="max-width:900px; margin:0 auto;">
       <img src="roman-road.png" alt="The Roman Road to Salvation — a Scripture-by-Scripture path through the gospel">
+    </div>
+    <div style="text-align:center; margin-top:24px;">
+      <a href="romanroad.html" class="btn btn-burgundy">View the Full Illustration &rarr;</a>
     </div>
   </div>
 </section>
@@ -169,10 +169,12 @@
           <li><a href="history.html">Our History</a></li>
           <li><a href="leadership.html">Leadership</a></li>
           <li><a href="worship.html">Worship</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="teaching.html">Teaching &amp; Equipping</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="visit.html">Visit Us</a></li>
-          <li><a href="lifeline.html">The Lifeline</a></li>
+          <li><a href="lifeline.html">Need Help?</a></li>
+          <li><a href="romanroad.html">Path to Salvation</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -187,10 +189,14 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
-      <a href="lifeline.html">I Need Someone &rarr;</a>
+      <a href="lifeline.html">Need Help? &rarr;</a>
     </div>
   </div>
 </footer>
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+  <img src="" alt="" id="lightbox-img">
+</div>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   var toggle = document.querySelector('.nav-toggle');
@@ -201,7 +207,21 @@
       toggle.setAttribute('aria-expanded', links.classList.contains('open'));
     });
   }
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.lightbox-trigger img').forEach(function (img) {
+    img.parentElement.addEventListener('click', function () {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox() { lightbox.classList.remove('open'); lightboxImg.src=''; }
+  lightbox.addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
 </script>
+
 
 </body>
 </html>

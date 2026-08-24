@@ -16,10 +16,11 @@
       <li><a href="index.html" class="">Home</a></li>
       <li><a href="about.html" class="">About Us</a></li>
       <li><a href="worship.html" class="">Worship</a></li>
+      <li><a href="events.html" class="">Events</a></li>
       <li><a href="teaching.html" class="">Teaching</a></li>
       <li><a href="give.html" class="">Give</a></li>
       <li><a href="visit.html" class="active">Visit Us</a></li>
-      <li><a href="lifeline.html" class="lifeline-link">I Need Someone</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
     </ul>
   </div>
 </header>
@@ -187,10 +188,12 @@
           <li><a href="history.html">Our History</a></li>
           <li><a href="leadership.html">Leadership</a></li>
           <li><a href="worship.html">Worship</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="teaching.html">Teaching &amp; Equipping</a></li>
           <li><a href="give.html">Give</a></li>
           <li><a href="visit.html">Visit Us</a></li>
-          <li><a href="lifeline.html">The Lifeline</a></li>
+          <li><a href="lifeline.html">Need Help?</a></li>
+          <li><a href="romanroad.html">Path to Salvation</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -205,10 +208,14 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
-      <a href="lifeline.html">I Need Someone &rarr;</a>
+      <a href="lifeline.html">Need Help? &rarr;</a>
     </div>
   </div>
 </footer>
+<div class="lightbox-overlay" id="lightbox">
+  <span class="lightbox-close" id="lightbox-close">&times;</span>
+  <img src="" alt="" id="lightbox-img">
+</div>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   var toggle = document.querySelector('.nav-toggle');
@@ -219,7 +226,21 @@
       toggle.setAttribute('aria-expanded', links.classList.contains('open'));
     });
   }
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  document.querySelectorAll('.lightbox-trigger img').forEach(function (img) {
+    img.parentElement.addEventListener('click', function () {
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox() { lightbox.classList.remove('open'); lightboxImg.src=''; }
+  lightbox.addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLightbox(); });
 </script>
+
 
 </body>
 </html>
