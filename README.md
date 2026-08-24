@@ -15,7 +15,7 @@
 | `give.html` | Givelify link and giving info |
 | `visit.html` | Address, map, service times, what to expect, visitor form |
 | `connect.html` | MailerLite signup, prayer request, membership interest, general contact, testimony submissions |
-| `lifeline.html` ("Need Help?") | Crisis/pastoral support form, links to Path to Salvation |
+| `lifeline.html` ("Need Help?") | Crisis/pastoral support form, prominent 911/988 emergency banner, links to Path to Salvation |
 | `romanroad.html` | The Roman Road to Salvation — dedicated gospel page, with a testimony-sharing CTA |
 
 `style-v2.css` is the one shared stylesheet for all 12 pages. Every image referenced by the HTML files must stay in this same folder — don't move things into subfolders, or the site will render unstyled ("shell page" look).
