@@ -14,14 +14,14 @@
 | `teaching.html` | Current sermon series, sermon archive, teaching resources |
 | `give.html` | Givelify link and giving info |
 | `visit.html` | Address, map, service times, what to expect, visitor form |
-| `connect.html` | MailerLite signup, prayer request, membership interest, general contact |
+| `connect.html` | MailerLite signup, prayer request, membership interest, general contact, testimony submissions |
 | `lifeline.html` ("Need Help?") | Crisis/pastoral support form, links to Path to Salvation |
-| `romanroad.html` | The Roman Road to Salvation — dedicated gospel page |
+| `romanroad.html` | The Roman Road to Salvation — dedicated gospel page, with a testimony-sharing CTA |
 
 `style-v2.css` is the one shared stylesheet for all 12 pages. Every image referenced by the HTML files must stay in this same folder — don't move things into subfolders, or the site will render unstyled ("shell page" look).
 
 ## Site-wide elements baked into every page
-These three pieces are **duplicated in every single HTML file** rather than pulled from one shared file (this is a plain static site, no templating). If you ever want to change one of them, you need to edit it in all 12 files, not just one:
+These pieces are **duplicated in every single HTML file** rather than pulled from one shared file (this is a plain static site, no templating). If you ever want to change one of them, you need to edit it in all 12 files, not just one:
 
 1. **Header/nav** — logo, nav links, mobile hamburger menu
 2. **Footer** — logo, Navigate links, address/service times, copyright
@@ -35,6 +35,9 @@ Events are **not edited in these files at all**. The church's Google Calendar (t
 
 ## Updating the current sermon series
 When the series changes, edit the text and graphic in `teaching.html` — search for "Current Series" near the top of the file. The archive itself (past sermons/studies) pulls live from the YouTube channel embed, so that never needs manual updating.
+
+## Testimonies from the Roman Road page
+The "Share My Testimony" button on `romanroad.html` links to the general contact form on `connect.html` (anchored to `#contact`), with "I Accepted Christ — I Want to Share My Testimony" pre-added as a subject option in that form's dropdown. Submissions arrive as regular emails via FormSubmit — same inbox as all other general contact messages.
 
 ## Key embeds and IDs (for reference if anything needs reconnecting)
 - **YouTube channel:** `@NewZionBaptistChurch-DC` (channel ID `UCikwbnKH4tXgvRiSC5sIkOQ`)
