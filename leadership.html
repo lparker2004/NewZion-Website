@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leadership | New Zion Baptist Church</title>
+<meta name="description" content="Meet the pastoral leadership of New Zion Baptist Church.">
+<link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo"><img src="logo-light.png" alt="New Zion Baptist Church"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="">Home</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="worship.html" class="">Worship</a></li>
+      <li><a href="teaching.html" class="">Teaching</a></li>
+      <li><a href="give.html" class="">Give</a></li>
+      <li><a href="visit.html" class="">Visit Us</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">I Need Someone</a></li>
+    </ul>
+  </div>
+</header>
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Leadership</span>
+    <h1>Shepherds Across Generations</h1>
+    <p>New Zion has been guided by faithful leadership since 1983 — each pastor building on the foundation laid before them.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container grid grid-3">
+    <div class="card" style="text-align:center;">
+      <div class="arch-frame small has-photo" style="margin-bottom:20px;">
+        <img src="pastor-alphonse.jpg" alt="Pastor Alphonse Certain, Jr.">
+      </div>
+      <span class="card-meta">Founding Pastor · 1983–2017</span>
+      <h3>Pastor Alphonse Certain, Jr.</h3>
+      <p>Founder and first Senior Pastor of New Zion Baptist Church. For over three decades he shepherded this congregation with wisdom, determination, and a servant's heart.</p>
+      <a href="history.html" class="btn btn-outline">Read His Story</a>
+    </div>
+
+    <div class="card" style="text-align:center; border-top-color: var(--burgundy);">
+      <div class="arch-frame small has-photo" style="margin-bottom:20px;">
+        <img src="pastor-certain.png" alt="Rev. Major L. Certain">
+      </div>
+      <span class="card-meta">Senior Pastor · 2017–Present</span>
+      <h3>Rev. Major L. Certain</h3>
+      <p>A mighty woman of God whose desire has always been that people know God's Word in their minds, store it in their hearts, and demonstrate it to the world.</p>
+      <a href="history.html" class="btn btn-outline">Read Her Story</a>
+    </div>
+
+    <div class="card" style="text-align:center;">
+      <div class="arch-frame small has-photo" style="margin-bottom:20px;">
+        <img src="pastor-parker.jpg" alt="Rev. Lloyd Parker, Jr.">
+      </div>
+      <span class="card-meta">Incoming Senior Pastor</span>
+      <h3>Rev. Lloyd Parker, Jr.</h3>
+      <p>Currently serving as Assistant Pastor and Wednesday Bible Study teacher, Rev. Parker and his wife Tanaia joined New Zion as members before answering the call to pastoral ministry here.</p>
+      <a href="history.html" class="btn btn-outline">Read His Story</a>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt text-center" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">One Family, Three Chapters</span>
+    <h2>See How This Story Unfolded</h2>
+    <p style="max-width:56ch; margin:0 auto 24px;">From a school cafeteria in 1983 to the sanctuary on Call Place SE today — walk through the full history of New Zion, pastor by pastor.</p>
+    <a href="history.html" class="btn btn-burgundy">Our History</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo-dark.png" alt="New Zion Baptist Church" style="height:76px; width:auto;">
+        <span class="tagline">"Equipping Believers Through the Clear Teaching of God's Word"</span>
+        <p>A teaching-centered congregation in Washington, D.C., committed to biblical truth, spiritual growth, and reaching the world with the gospel of Jesus Christ. Serving our community since 1983.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="history.html">Our History</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="worship.html">Worship</a></li>
+          <li><a href="teaching.html">Teaching &amp; Equipping</a></li>
+          <li><a href="give.html">Give</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
+          <li><a href="lifeline.html">The Lifeline</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Find Us</h4>
+        <ul>
+          <li>5400 Call Place SE<br>Washington, D.C.</li>
+          <li style="margin-top:10px;"><span style="color:var(--gold-light); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:2px;">Sunday Worship</span>11:15 AM</li>
+          <li><span style="color:var(--gold-light); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:2px;">Wednesday Bible Study</span>7:00 – 8:00 PM</li>
+          <li><a href="mailto:info@newzionbaptist.org">info@newzionbaptist.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
+      <a href="lifeline.html">I Need Someone &rarr;</a>
+    </div>
+  </div>
+</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+    });
+  }
+</script>
+
+</body>
+</html>
