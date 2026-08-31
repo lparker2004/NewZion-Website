@@ -136,8 +136,8 @@ p { margin: 0 0 1.2em; color: var(--gray); }
 /* ---------- Header / Nav ---------- */
 header.site-header {
   position: sticky; top: 0; z-index: 100;
-  background: var(--white);
-  border-bottom: 3px solid var(--burgundy);
+  background: var(--burgundy);
+  border-bottom: 3px solid var(--gold);
 }
 .nav-row {
   display: flex; align-items: center; justify-content: space-between;
@@ -149,27 +149,29 @@ header.site-header {
 .nav-links a {
   display: inline-block; padding: 8px 14px;
   font-size: 0.86rem; font-weight: 600; letter-spacing: 0.03em;
-  color: var(--charcoal); border-bottom: 2px solid transparent;
+  color: var(--white); border-bottom: 2px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
-.nav-links a:hover, .nav-links a.active { color: var(--burgundy); border-color: var(--gold); }
+.nav-links a:hover, .nav-links a.active { color: var(--gold-light); border-color: var(--gold); }
 .nav-links .lifeline-link {
-  color: var(--burgundy); border: 1.5px solid var(--burgundy);
+  background: var(--gold); color: var(--white); border: 1.5px solid var(--gold);
   border-radius: 3px; padding: 8px 16px !important; margin-left: 6px;
 }
-.nav-links .lifeline-link:hover { background: var(--burgundy); color: var(--white); border-bottom-color: var(--burgundy); }
+.nav-links .lifeline-link:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--white); border-bottom-color: var(--gold-light); }
+.nav-icon-circle { border-color: var(--gold-light); color: var(--gold-light); }
+.nav-icon-circle:hover { background: var(--gold-light); color: var(--burgundy); }
 
-.nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--burgundy); cursor: pointer; }
+.nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--white); cursor: pointer; }
 
 @media (max-width: 880px) {
   .nav-toggle { display: block; }
   .nav-links {
     position: absolute; top: 100%; left: 0; right: 0;
-    background: var(--white); flex-direction: column; align-items: stretch;
-    border-bottom: 3px solid var(--burgundy); display: none; padding: 8px 24px 18px;
+    background: var(--burgundy); flex-direction: column; align-items: stretch;
+    border-bottom: 3px solid var(--gold); display: none; padding: 8px 24px 18px;
   }
   .nav-links.open { display: flex; }
-  .nav-links a { padding: 12px 4px; border-bottom: 1px solid var(--border); }
+  .nav-links a { padding: 12px 4px; border-bottom: 1px solid rgba(255,255,255,0.15); }
   .nav-links .lifeline-link { margin-top: 8px; text-align: center; }
 }
 
