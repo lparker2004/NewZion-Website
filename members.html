@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Members | New Zion Baptist Church</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+<div class="gate-overlay" id="gate-overlay">
+  <div class="gate-box">
+    <span class="eyebrow" style="justify-content:center;">Members Area</span>
+    <h2 style="margin-bottom:6px;">Enter Password</h2>
+    <p style="font-size:0.88rem; margin-bottom:0;">This page is for New Zion members only. Enter the password shared with the congregation.</p>
+    <input type="password" id="gate-password" placeholder="Password" autocomplete="off">
+    <div class="gate-error" id="gate-error"></div>
+    <button class="btn btn-burgundy" style="width:100%; justify-content:center;" onclick="checkGatePassword()">Enter</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo"><img src="logo-light.png" alt="New Zion Baptist Church"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="">Home</a></li>
+      <li><a href="about.html" class="">About Us</a></li>
+      <li><a href="worship.html" class="">Worship</a></li>
+      <li><a href="events.html" class="">Events</a></li>
+      <li><a href="teaching.html" class="">Teaching</a></li>
+      <li><a href="give.html" class="">Give</a></li>
+      <li><a href="visit.html" class="">Visit Us</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="gated-content" id="gated-content">
+
+<section class="page-hero" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">Members Area</span>
+    <h1>Welcome, New Zion Family</h1>
+    <p style="max-width:56ch; margin:0 auto;">This space is just for our members. Thank you for being part of the New Zion family.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">Keep Your Information Current</span>
+      <h2>Update Your Member Information</h2>
+      <p style="max-width:56ch; margin:0 auto;">If any of your information has changed, please let us know below. This helps us keep our membership roster accurate and stay in touch.</p>
+    </div>
+    <div class="card" style="max-width:640px; margin:0 auto; text-align:center; border-top-color:var(--gold);">
+      <p style="font-size:0.9rem;">
+        <strong>Form coming soon.</strong> Once the member information form is connected, it will appear here, covering: full name, address, mobile phone, email address, date joined, and shirt size.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt text-center" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">Questions?</span>
+    <h2>Reach Out to the Church Office</h2>
+    <p style="max-width:52ch; margin:0 auto 24px;">If anything on this page isn't working, or you need help updating your information another way, contact us directly.</p>
+    <a href="mailto:info@newzionbaptist.org" class="btn btn-burgundy">Email the Church Office</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo-dark.png" alt="New Zion Baptist Church" style="height:76px; width:auto;">
+        <span class="tagline">"Equipping Believers Through the Clear Teaching of God's Word"</span>
+        <p>A teaching-centered congregation in Washington, D.C., committed to biblical truth, spiritual growth, and reaching the world with the gospel of Jesus Christ. Serving our community since 1983.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="history.html">Our History</a></li>
+          <li><a href="leadership.html">Leadership</a></li>
+          <li><a href="worship.html">Worship</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="teaching.html">Teaching &amp; Equipping</a></li>
+          <li><a href="give.html">Give</a></li>
+          <li><a href="visit.html">Visit Us</a></li>
+          <li><a href="lifeline.html">Need Help?</a></li>
+          <li><a href="romanroad.html">Path to Salvation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Find Us</h4>
+        <ul>
+          <li>5400 Call Place SE<br>Washington, D.C.</li>
+          <li style="margin-top:10px;"><span style="color:var(--gold-light); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:2px;">Sunday Worship</span>11:15 AM</li>
+          <li><span style="color:var(--gold-light); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.1em; display:block; margin-bottom:2px;">Wednesday Bible Study</span>7:00 – 8:00 PM</li>
+          <li><a href="mailto:info@newzionbaptist.org">info@newzionbaptist.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
+      <a href="lifeline.html">Need Help? &rarr;</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /gated-content -->
+
+<script>
+  // ============================================================
+  // MEMBER PASSWORD GATE
+  // This is a SOFT gate for casual privacy, not real security.
+  // The page content below still exists in the file; a technically
+  // determined visitor could view it via browser dev tools before
+  // entering the password. Do not put anything highly sensitive
+  // (SSNs, financial info, etc.) on this page.
+  //
+  // TO CHANGE THE PASSWORD: ask Claude to generate a new SHA-256
+  // hash for your new password and swap the GATE_HASH value below.
+  var GATE_HASH = "347b96de663edbd90b4b674fe8bb672cbf4587f8e7a49a4a925769f174e15efe";
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  async function checkGatePassword() {
+    var input = document.getElementById('gate-password').value;
+    var hash = await sha256(input);
+    var errorEl = document.getElementById('gate-error');
+    if (hash === GATE_HASH) {
+      document.getElementById('gate-overlay').style.display = 'none';
+      document.getElementById('gated-content').classList.add('unlocked');
+      sessionStorage.setItem('nzbc_member_unlocked', '1');
+    } else {
+      errorEl.textContent = 'Incorrect password. Please try again.';
+      document.getElementById('gate-password').value = '';
+    }
+  }
+
+  document.getElementById('gate-password').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkGatePassword();
+  });
+
+  // Stay unlocked for the rest of this browser session
+  if (sessionStorage.getItem('nzbc_member_unlocked') === '1') {
+    document.getElementById('gate-overlay').style.display = 'none';
+    document.getElementById('gated-content').classList.add('unlocked');
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+    });
+  }
+</script>
+
+</body>
+</html>
