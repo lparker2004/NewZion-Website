@@ -339,6 +339,15 @@ footer.site-footer { background: var(--burgundy-deep); color: rgba(245,240,232,0
 .gated-content { display: none; }
 .gated-content.unlocked { display: block; }
 
+.nav-icon-circle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 1.5px solid var(--gold); color: var(--gold);
+  margin-left: 8px; flex-shrink: 0; transition: background 0.2s, color 0.2s;
+}
+.nav-icon-circle:hover { background: var(--gold); color: var(--white); }
+.nav-icon-circle svg { width: 15px; height: 15px; }
+
 @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

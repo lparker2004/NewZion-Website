@@ -19,26 +19,15 @@
 | `romanroad.html` | The Roman Road to Salvation — dedicated gospel page, with a testimony-sharing CTA |
 
 ## Members-Only Page: members.html
-**Not linked anywhere in the nav or footer** — reachable only if someone has the direct URL (`newzionbaptist.org/members.html`).
+Reachable two ways: the small gold cross-in-circle icon in the main nav (right after "Need Help?" on every public page), or by typing `newzionbaptist.org/members.html` directly. Not listed in the footer's Navigate list, to keep it low-key.
 
-**Important honesty note:** because this GitHub repository is public (required for free GitHub Pages), `members.html` is technically visible to anyone who browses the repo's file list on GitHub itself — "hidden" here means "not linked from the site," not "impossible to find." The password gate on the page is a **soft privacy gate**, not real security: the page content still exists in the file, and someone technically determined could view it via browser dev tools before entering the password. Do not put highly sensitive info (SSNs, financial details, etc.) on this page. It's appropriate for keeping casual visitors out of member-only content, not for protecting truly confidential data.
+**Important honesty note:** because this GitHub repository is public (required for free GitHub Pages), `members.html` is technically visible to anyone who browses the repo's file list on GitHub itself. The password gate on the page is a **soft privacy gate**, not real security: the page content still exists in the file, and someone technically determined could view it via browser dev tools before entering the password. Do not put highly sensitive info (SSNs, financial details, etc.) on this page. It's appropriate for keeping casual visitors out of member-only content, not for protecting truly confidential data.
 
 **How the gate works:** the password is stored as a SHA-256 hash in the page's JavaScript (never in plain text), so casual view-source doesn't reveal it. The password is currently set to `NewZion2026!`.
 
 **To change the password:** ask Claude to generate a new SHA-256 hash for your chosen password, then swap the `GATE_HASH` value near the bottom of `members.html`. This is a one-line edit, no automation involved — exactly the "reset it myself from time to time" workflow requested.
 
-**Member info form:** currently a placeholder ("Form coming soon") pending a Google Form. See "Outstanding item" below.
-
-## Outstanding item: Member Info Update Form
-Needs a Google Form created in your Google Workspace, linked to a new Google Sheet (the membership roster), with these fields:
-- Full Name
-- Address
-- Mobile Phone
-- Email Address
-- Date Joined
-- Shirt Size
-
-Once that form exists, share its embed code (Form → Send → the `< >` embed icon), the same way the Lifeline and Prayer Request forms were shared, and it'll replace the placeholder card on `members.html`.
+**Member Info Update Form:** live and embedded directly on the page. Backed by a Google Form (ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs`) linked to a Google Sheet in your Workspace, covering Full Name, Address, Mobile Phone, Email Address, Date Joined, and Shirt Size. Responses land in that Sheet automatically, no manual re-entry needed.
 
 ## Announcements on the Events page
 The right-hand column on `events.html` holds announcement/flyer cards. The Installation Service flyer is the first entry — clicking it opens the full flyer via the site's lightbox. To add a new announcement, copy that card's HTML block, swap in the new flyer image (drop the file in this same folder), title, date, and blurb.
@@ -48,7 +37,7 @@ The right-hand column on `events.html` holds announcement/flyer cards. The Insta
 ## Site-wide elements baked into every public page
 These pieces are **duplicated in every single HTML file** rather than pulled from one shared file (this is a plain static site, no templating). If you ever want to change one of them, you need to edit it in all pages, not just one:
 
-1. **Header/nav** — logo, nav links, mobile hamburger menu
+1. **Header/nav** — logo, nav links, the members-login icon, mobile hamburger menu
 2. **Footer** — logo, Navigate links, address/service times, copyright
 3. **Bottom-of-page script block** — powers three things on every page:
    - The **lightbox** (click-to-enlarge) — works two ways: automatically on any image inside a `class="lightbox-trigger"` wrapper, or from any button/link with `data-lightbox-src="filename.png"` (used for the "See the Full Roadmap" buttons on `about.html`)
@@ -78,6 +67,7 @@ The "Share My Testimony" button on `romanroad.html` links to the general contact
 - **Givelify:** `https://giv.li/5e28vt`
 - **MailerLite account:** `2591296` — two separate forms: `ZeXFLS` (Stay Connected, on `connect.html`) and `wmf85O` (Prayer Request, also on `connect.html`)
 - **Lifeline private message form:** Google Form ID `1FAIpQLSeteKXvgcA6kc_3dLxLyKvsEX2_I9eeAePcsgtYcRd352gr8w`, embedded on `lifeline.html`
+- **Member Info Update Form:** Google Form ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs`, embedded on `members.html`
 - **Zoom (Wednesday Bible Study):** link appears on `worship.html` and `teaching.html`
 - **Google Calendar (Events):** calendar ID `c_d55e8604353038a9c5b3f100e73ed22a15018a358ee84ace83188ab5f539ce88@group.calendar.google.com`
 
