@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teen Corner | New Zion Baptist Church</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+<div class="gate-overlay" id="gate-overlay">
+  <div class="gate-box">
+    <span class="eyebrow" style="justify-content:center;">Teen Corner</span>
+    <h2 style="margin-bottom:6px;">Enter Password</h2>
+    <p style="font-size:0.88rem; margin-bottom:0;">This page is for New Zion members only. Enter the password shared with the congregation.</p>
+    <input type="password" id="gate-password" placeholder="Password" autocomplete="off">
+    <div class="gate-error" id="gate-error"></div>
+    <button class="btn btn-burgundy" style="width:100%; justify-content:center;" onclick="checkGatePassword()">Enter</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo"><img src="logo-dark.png" alt="New Zion Baptist Church"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="members.html" class="">Members Home</a></li>
+      <li><a href="index.html" class="">Main Site</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="gated-content" id="gated-content">
+
+<section style="padding:0;">
+  <img src="teens-hero.png" alt="Teen Corner, 1 Timothy 4:12, let no one despise your youth, but be an example to the believers" style="width:100%; display:block;">
+</section>
+
+<section class="text-center" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">This Is Your Space</span>
+    <h1>Real Talk, Real Faith</h1>
+    <p style="max-width:56ch; margin:0 auto;">This corner is just for you. Ask what you're really thinking. Explore what you actually believe. No judgment, ever, just honest answers and people who care.</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">Bible Resources</span>
+      <h2>Dig Into the Word</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="card" style="text-align:center;">
+        <h3>Sunday &amp; Bible Study</h3>
+        <p style="font-size:0.9rem;">Catch every message, live or on demand.</p>
+        <a href="worship.html" class="btn btn-outline" style="width:100%; justify-content:center;">Watch Now</a>
+      </div>
+      <div class="card" style="text-align:center; border-top-color:var(--gold);">
+        <h3>The Roman Road</h3>
+        <p style="font-size:0.9rem;">What it actually means to know Christ, explained simply.</p>
+        <a href="romanroad.html" class="btn btn-outline" style="width:100%; justify-content:center;">Explore It</a>
+      </div>
+      <div class="card" style="text-align:center;">
+        <h3>Our Roadmap</h3>
+        <p style="font-size:0.9rem;">Where we're headed as a church family, and how you fit in.</p>
+        <a href="about.html" class="btn btn-outline" style="width:100%; justify-content:center;">See the Roadmap</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container grid grid-2" style="align-items:start;">
+    <div>
+      <span class="eyebrow">Ask Anything</span>
+      <h2>No Question Is Off Limits</h2>
+      <p>Doubt something? Confused about a Bible story? Wrestling with something happening in your life? Ask. This isn't posted anywhere, it isn't shared with anyone else, it just comes straight to Pastor Parker.</p>
+      <p style="font-size:0.9rem;">You don't have to give your name if you'd rather not. If you want an answer back, leave your email, otherwise Pastor Parker may bring it up (without saying who asked) during a future teaching, if it's something other teens are probably wondering too.</p>
+      <div class="scripture-pull">
+        <p>&ldquo;Let no one despise your youth, but be an example to the believers in word, in conduct, in love, in spirit, in faith, in purity.&rdquo;</p>
+        <cite>1 Timothy 4:12</cite>
+      </div>
+    </div>
+    <div class="card" style="border-top-color:var(--gold);">
+      <h3 style="margin-bottom:6px;">Ask Pastor Parker</h3>
+      <p style="font-size:0.85rem;">This goes directly to Pastor Parker. No one else sees it.</p>
+      <form action="https://formsubmit.co/info@newzionbaptist.org" method="POST">
+        <input type="hidden" name="_subject" value="Teen Corner, Private Question">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+        <div class="form-field"><label for="teen-name">Your Name (Optional)</label><input type="text" id="teen-name" name="name" placeholder="You can leave this blank"></div>
+        <div class="form-field"><label for="teen-email">Your Email (Optional)</label><input type="email" id="teen-email" name="email" placeholder="Only if you want a reply"></div>
+        <div class="form-field"><label for="teen-question">Your Question</label><textarea id="teen-question" name="question" placeholder="Ask anything, really." required></textarea></div>
+        <button type="submit" class="btn btn-burgundy" style="width:100%; justify-content:center;">Send My Question</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0;">
+      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
+      <a href="members.html">&larr; Back to Members Home</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /gated-content -->
+
+<script>
+  var GATE_HASH = "08ddd8e0a908269713e37511505b2b7a4516a19dfa6e6c45c0b3ce39ddde28e9";
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  async function checkGatePassword() {
+    var input = document.getElementById('gate-password').value;
+    var hash = await sha256(input);
+    var errorEl = document.getElementById('gate-error');
+    if (hash === GATE_HASH) {
+      document.getElementById('gate-overlay').style.display = 'none';
+      document.getElementById('gated-content').classList.add('unlocked');
+      sessionStorage.setItem('nzbc_teen_unlocked', '1');
+    } else {
+      errorEl.textContent = 'Incorrect password. Please try again.';
+      document.getElementById('gate-password').value = '';
+    }
+  }
+
+  document.getElementById('gate-password').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkGatePassword();
+  });
+
+  if (sessionStorage.getItem('nzbc_teen_unlocked') === '1') {
+    document.getElementById('gate-overlay').style.display = 'none';
+    document.getElementById('gated-content').classList.add('unlocked');
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Children + Parents | New Zion Baptist Church</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+<div class="gate-overlay" id="gate-overlay">
+  <div class="gate-box">
+    <span class="eyebrow" style="justify-content:center;">Children + Parents</span>
+    <h2 style="margin-bottom:6px;">Enter Password</h2>
+    <p style="font-size:0.88rem; margin-bottom:0;">This page is for New Zion members only. Enter the password shared with the congregation.</p>
+    <input type="password" id="gate-password" placeholder="Password" autocomplete="off">
+    <div class="gate-error" id="gate-error"></div>
+    <button class="btn btn-burgundy" style="width:100%; justify-content:center;" onclick="checkGatePassword()">Enter</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo"><img src="logo-dark.png" alt="New Zion Baptist Church"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="members.html" class="">Members Home</a></li>
+      <li><a href="index.html" class="">Main Site</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="gated-content" id="gated-content">
+
+<section style="padding:0;">
+  <img src="children-hero.png" alt="Children and Parents, growing together in God's love, let the little children come to me, Matthew 19:14" style="width:100%; display:block;">
+</section>
+
+<section class="text-center" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">A Space for the Whole Family</span>
+    <h1>Learn, Laugh, Grow, Together</h1>
+    <p style="max-width:56ch; margin:0 auto;">This page is meant to be explored together, parent and child side by side. Everything here is built to help your family grow in God's love, one page, one question, one conversation at a time.</p>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">Coloring Pages</span>
+      <h2>Fun, Faith-Filled Coloring Pages</h2>
+      <p>Printable pages for kids to enjoy and learn.</p>
+    </div>
+    <div class="card" style="max-width:560px; margin:0 auto; text-align:center;">
+      <p style="font-size:0.9rem;"><strong>Coloring pages and crossword puzzles are coming soon.</strong> Check back here, they'll be downloadable right from this page.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="section-head center">
+      <span class="eyebrow" style="justify-content:center;">Bible Resources</span>
+      <h2>Explore Together</h2>
+    </div>
+    <div class="grid grid-2">
+      <a href="worship.html" class="card" style="text-decoration:none; text-align:center;">
+        <h3>Watch Together</h3>
+        <p style="font-size:0.9rem;">Sunday worship and Bible study, together as a family.</p>
+      </a>
+      <a href="romanroad.html" class="card" style="text-decoration:none; text-align:center; border-top-color:var(--gold);">
+        <h3>The Roman Road</h3>
+        <p style="font-size:0.9rem;">A simple, gentle way to explore what it means to know Jesus.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container grid grid-2" style="align-items:start;">
+    <div>
+      <span class="eyebrow">Ask Questions</span>
+      <h2>Kids Can Ask Anything About God</h2>
+      <p>Big questions, small questions, silly questions, all of them welcome. This form is meant for parent and child to fill out together, we ask for a parent's name and email so a grown-up is always part of the conversation.</p>
+      <div class="scripture-pull">
+        <p>&ldquo;Let the little children come to me, and do not hinder them, for the kingdom of God belongs to such as these.&rdquo;</p>
+        <cite>Matthew 19:14</cite>
+      </div>
+    </div>
+    <div class="card" style="border-top-color:var(--gold);">
+      <h3 style="margin-bottom:6px;">Help Your Child Ask a Question</h3>
+      <p style="font-size:0.85rem;">Please fill this out together. A parent's info is required so we know a grown-up is involved.</p>
+      <form action="https://formsubmit.co/info@newzionbaptist.org" method="POST">
+        <input type="hidden" name="_subject" value="Children's Page, Parent-Facilitated Question">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
+        <div class="form-field"><label for="parent-name">Parent's Name</label><input type="text" id="parent-name" name="parent_name" placeholder="Required" required></div>
+        <div class="form-field"><label for="parent-email">Parent's Email</label><input type="email" id="parent-email" name="parent_email" placeholder="Required" required></div>
+        <div class="form-field"><label for="child-name">Child's First Name (Optional)</label><input type="text" id="child-name" name="child_name" placeholder="You can leave this blank"></div>
+        <div class="form-field"><label for="child-question">The Question</label><textarea id="child-question" name="question" placeholder="What does your child want to ask?" required></textarea></div>
+        <button type="submit" class="btn btn-burgundy" style="width:100%; justify-content:center;">Send Our Question</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0;">
+      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
+      <a href="members.html">&larr; Back to Members Home</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /gated-content -->
+
+<script>
+  var GATE_HASH = "347b96de663edbd90b4b674fe8bb672cbf4587f8e7a49a4a925769f174e15efe";
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  async function checkGatePassword() {
+    var input = document.getElementById('gate-password').value;
+    var hash = await sha256(input);
+    var errorEl = document.getElementById('gate-error');
+    if (hash === GATE_HASH) {
+      document.getElementById('gate-overlay').style.display = 'none';
+      document.getElementById('gated-content').classList.add('unlocked');
+      sessionStorage.setItem('nzbc_member_unlocked', '1');
+    } else {
+      errorEl.textContent = 'Incorrect password. Please try again.';
+      document.getElementById('gate-password').value = '';
+    }
+  }
+
+  document.getElementById('gate-password').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkGatePassword();
+  });
+
+  if (sessionStorage.getItem('nzbc_member_unlocked') === '1') {
+    document.getElementById('gate-overlay').style.display = 'none';
+    document.getElementById('gated-content').classList.add('unlocked');
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+    });
+  }
+</script>
+
+</body>
+</html>

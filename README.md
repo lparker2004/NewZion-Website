@@ -1,6 +1,6 @@
 # New Zion Baptist Church — Website
 
-13 pages (12 public + 1 members-only), burgundy/gold design system, hosted on GitHub Pages at newzionbaptist.org.
+15 pages (12 public + 3 members-only), burgundy/gold design system, hosted on GitHub Pages at newzionbaptist.org.
 
 ## Public Pages
 | File | Purpose |
@@ -23,41 +23,55 @@ The archive is segmented into two playlists rather than one mixed feed:
 - **Sunday Worship:** `https://www.youtube.com/playlist?list=PLS5Uqnbsv-jI`
 - **Bible Studies:** `https://www.youtube.com/playlist?list=PLOMcjaopCp3o`
 
-`teaching.html` embeds both side by side. `worship.html`'s archive links point specifically at the Sunday Worship playlist. New videos need to be manually added to the correct playlist in YouTube Studio when uploaded, that step happens on YouTube's side, not on the website.
+`teaching.html` embeds both side by side. `worship.html`'s archive links point specifically at the Sunday Worship playlist. New videos need to be manually added to the correct playlist in YouTube Studio when uploaded.
 
-## Members-Only Page: members.html
-Reachable via the small gold cross-in-circle icon in the main nav (right after "Need Help?" on every public page), or by typing `newzionbaptist.org/members.html` directly.
+## Members-Only Pages
+Reachable via the small gold cross-in-circle icon in the main nav (right after "Need Help?" on every public page), or by typing the URL directly. None of these three are linked in the main public nav or footer, by design.
 
-**Now a real welcome hub, not just a form.** Structure: welcome photo + greeting, then a "Get Connected" card grid (Update My Info, Church Calendar, Support Request), then a "Useful Links" row (Give via Givelify, Bible Study playlist, Sunday Sermons playlist), then the member info update form itself further down the same page (anchored at `#update-info`).
+### members.html — the hub
+A welcome page, not just a form. Structure: welcome photo + greeting, a "Get Connected" card grid (Update My Info, Church Calendar, Support Request, Teen Corner, Children + Parents), a "Useful Links" row (Give via Givelify, Bible Study playlist, Sunday Sermons playlist), then the member info update form itself further down the same page (anchored at `#update-info`).
 
-**Intentionally not yet included:** Ministries, Teens, Children, and a Gallery were all discussed as future doorway cards, but none of those pages exist yet. Per an earlier design decision, the hub avoids shipping empty "coming soon" placeholder cards, real cards get added only once their destination page is real. When any of those are built, add a card here following the same pattern as the three that already exist.
-
-**Important honesty note:** because this GitHub repository is public (required for free GitHub Pages), `members.html` is technically visible to anyone who browses the repo's file list on GitHub itself. The password gate is a **soft privacy gate**, not real security, do not put highly sensitive info (SSNs, financial details, etc.) on this page.
-
-**How the gate works:** password stored as a SHA-256 hash in the page's JavaScript. Currently set to `NewZion2026!`. To change it, ask Claude to generate a new hash and swap the `GATE_HASH` value near the bottom of `members.html`.
+**Still intentionally not included:** a Ministries page and a photo Gallery, neither exists yet. Per an earlier design decision, the hub avoids shipping empty "coming soon" placeholder cards, add a card only once its destination page is real.
 
 **Member Info Update Form:** embedded at `#update-info`. Backed by a Google Form (ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs`) linked to a Google Sheet in your Workspace, covering Full Name, Address, Mobile Phone, Email Address, Date Joined, and Shirt Size.
 
-**Data flow (lives entirely outside this repo, in your Google Workspace):** every submission lands in the Sheet's default "Form Responses" tab as a raw, append-only change log, nothing there is ever edited or deleted. A separate "Member Log" tab is the actual formal roster. An AI Executive Assistant (not part of this website) compares each new submission against the Member Log by matching Name + Mobile Phone, updates the matching row if found, or adds a new row if not.
+**Data flow (lives entirely outside this repo, in your Google Workspace):** every submission lands in the Sheet's default "Form Responses" tab as a raw, append-only change log. A separate "Member Log" tab is the actual formal roster. An AI Executive Assistant (not part of this website) compares each new submission against the Member Log by matching Name + Mobile Phone, updates the matching row if found, or adds a new row if not.
 
-`members.html` has its own separate script (the password gate) and does not include the site's shared lightbox or floating salvation button.
+### teens.html — Teen Corner
+Its own gated page (same password/hash as members.html), reachable only from the Members hub. Bible resource links, and a private question form (FormSubmit, goes to info@newzionbaptist.org) where a teen can ask anything, optionally anonymously, framed as safe and judgment-free, explicitly not a public forum. Simplified header/footer (Members Home / Main Site / Need Help links only, not the full public nav).
+
+### children.html — Children + Parents
+Also its own gated page. Bible resource links, and a question-submission form that **requires** a parent's name and email (child's name is optional), so a parent is structurally part of every submission, not just assumed. Coloring pages and crossword puzzles are marked "coming soon", no downloadable assets exist yet. When ready, they can be added as simple downloads directly on this page; since the whole page already sits behind the password gate, they don't need any separate gating.
+
+## Password gate mechanism
+All three members-only pages use the same underlying mechanism (SHA-256 hash stored in the page's JavaScript, never plain text), but **teens.html now has its own distinct password**, separate from members.html and children.html:
+- `members.html` and `children.html` share one password: `NewZion2026!`
+- `teens.html` has its own separate password: `NZT4Christ2026!`
+
+Each page also has its own separate sessionStorage key (`nzbc_member_unlocked` vs `nzbc_teen_unlocked`), so entering one password does not also unlock the other, they're genuinely independent even though members.html and children.html happen to currently share the same password value.
+
+To change any password: ask Claude to generate a new SHA-256 hash, then update the `GATE_HASH` value near the bottom of the relevant file(s). If you want members.html and children.html to keep sharing one password, update both together; teens.html can always be changed independently.
+
+**Important honesty note:** because this GitHub repository is public (required for free GitHub Pages), these files are technically visible to anyone who browses the repo's file list on GitHub itself. This is a **soft privacy gate**, not real security. Do not put highly sensitive info (SSNs, financial details, etc.) on any of these pages.
 
 ## Announcements on the Events page
-The right-hand column on `events.html` holds announcement/flyer cards. The Installation Service flyer is the first entry, clicking it opens the full flyer via the site's lightbox. To add a new announcement, copy that card's HTML block, swap in the new flyer image, title, date, and blurb.
+The right-hand column on `events.html` holds announcement/flyer cards. The Installation Service flyer is the first entry, click it to see the full flyer via the site's lightbox. To add a new announcement, copy that card's HTML block, swap in the new flyer image, title, date, and blurb.
 
 `style-v2.css` is the one shared stylesheet for all pages. Every image referenced by the HTML files must stay in this same folder, don't move things into subfolders.
 
 ## Site-wide elements baked into every public page
-Duplicated in every HTML file (no templating on a static site):
+Duplicated in every public HTML file (no templating on a static site):
 1. **Header/nav** — logo, nav links, the members-login icon, mobile hamburger menu
 2. **Footer** — logo, Navigate links, address/service times, copyright
 3. **Bottom-of-page script block** — the lightbox, the floating "Path to Salvation" button (hidden only on `romanroad.html`), the mobile nav toggle, auto-updating copyright year
+
+The three members-only pages each have their own simpler script (the password gate) and do not include the public site's lightbox or floating salvation button.
 
 ## Known open item
 The Home page's "Someone Is Here" section still has an older version of a story that was intentionally removed from `lifeline.html`. Leadership is reviewing the site and this will be reconciled along with their other feedback.
 
 ## Future roadmap (discussed, not yet built)
-See conversation history / Claude's memory of this project for full detail. Summary: a members hub build-out phase is planned covering a Ministries page (shared interest form with a ministry dropdown), a custom Spiritual Gifts inventory (5 modules, teach-then-assess, synchronized across Romans 12/1 Corinthians 12/Ephesians 4), a New Member Experience course (self-paced, form-based module unlocking, completion certificate, "right hand of fellowship"), a rule-based FAQ widget (explicitly not an AI chatbot), a Youth page (private question form, no open social platform), a Children's page (parent-facilitated question form, resources behind the member gate), and a member-side photo Gallery. Individual member logins/portals were explicitly deferred indefinitely in favor of the current human-gatekeeper model.
+See conversation history / Claude's memory of this project for full detail. Summary: a Ministries page (shared interest form with a ministry dropdown), a custom Spiritual Gifts inventory (5 modules, teach-then-assess, synchronized across Romans 12/1 Corinthians 12/Ephesians 4), a New Member Experience course (self-paced, form-based module unlocking, completion certificate, "right hand of fellowship"), a rule-based FAQ widget (explicitly not an AI chatbot), and a member-side photo Gallery. Individual member logins/portals were explicitly deferred indefinitely in favor of the current human-gatekeeper model.
 
 ## Style notes
 - No em dashes anywhere on the site (converted to commas sitewide).
