@@ -5,186 +5,435 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welcome Home | New Zion Baptist Church</title>
 <meta name="robots" content="noindex, nofollow">
-<link rel="stylesheet" href="style-v2.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --burgundy: #430204;
+    --burgundy-deep: #2C0103;
+    --gold: #B8860B;
+    --gold-bright: #E8C558;
+    --ivory: #FBF8F2;
+    --ink: #201512;
+    --ink-soft: #5B4A42;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Manrope', -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--ivory);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+
+  .top-nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 28px;
+    background: rgba(251,248,242,0.82);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(67,2,4,0.08);
+  }
+  .top-nav .brand { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: var(--burgundy); }
+  .top-nav .links { display: flex; gap: 22px; font-size: 0.88rem; font-weight: 600; }
+  .top-nav .links a { text-decoration: none; color: var(--ink-soft); transition: color 0.2s; }
+  .top-nav .links a:hover { color: var(--burgundy); }
+
+  .hero {
+    padding: 110px 28px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(184,134,11,0.14), transparent 60%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05;
+    color: var(--burgundy);
+    margin: 0 0 22px;
+    letter-spacing: -0.01em;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 auto;
+  }
+
+  .journey { max-width: 900px; margin: 0 auto; padding: 0 28px 40px; }
+  .journey-step {
+    display: flex;
+    gap: 28px;
+    align-items: stretch;
+  }
+  .rail {
+    flex-shrink: 0;
+    width: 44px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .dot {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--ivory);
+    border: 2.5px solid rgba(184,134,11,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700; font-size: 1.15rem;
+    color: rgba(67,2,4,0.35);
+    flex-shrink: 0;
+    transition: border-color 0.6s ease, color 0.6s ease, box-shadow 0.6s ease, background 0.6s ease;
+    z-index: 2;
+  }
+  .connector {
+    flex: 1;
+    width: 3px;
+    margin: 4px 0;
+    background: rgba(184,134,11,0.18);
+    border-radius: 2px;
+    transition: background 0.9s ease, box-shadow 0.9s ease;
+  }
+  .journey-step:last-child .connector { display: none; }
+  .journey-step.is-lit .dot {
+    background: var(--gold-bright);
+    border-color: var(--gold-bright);
+    color: var(--burgundy-deep);
+    box-shadow: 0 0 0 6px rgba(232,197,88,0.18), 0 0 24px rgba(232,197,88,0.5);
+  }
+  .journey-step.is-lit .connector {
+    background: linear-gradient(180deg, var(--gold-bright), rgba(184,134,11,0.4));
+    box-shadow: 0 0 10px rgba(232,197,88,0.4);
+  }
+  .step-body { flex: 1; padding: 6px 0 56px; min-width: 0; }
+  .step-label {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 8px;
+  }
+  .step-body h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.7rem, 3vw, 2.3rem); color: var(--burgundy);
+    margin: 0 0 14px; line-height: 1.1;
+  }
+  .step-body p { color: var(--ink-soft); font-size: 1.02rem; max-width: 62ch; }
+
+  .panel {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 1px 2px rgba(32,21,18,0.04), 0 12px 32px rgba(32,21,18,0.06);
+    padding: 32px;
+    margin-top: 18px;
+  }
+  .panel.flush { padding: 0; overflow: hidden; }
+  .quote-block {
+    position: relative;
+    padding: 8px 0 8px 28px;
+    border-left: 3px solid var(--gold);
+    margin: 24px 0;
+  }
+  .quote-block p {
+    font-family: var(--font-display); font-style: italic; font-weight: 500;
+    font-size: 1.3rem; color: var(--burgundy); margin: 0 0 8px; line-height: 1.4;
+  }
+  .quote-block cite { font-size: 0.8rem; font-weight: 700; color: var(--gold); font-style: normal; }
+
+  .photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 22px 0; }
+  .photo-row img { width: 100%; height: 140px; object-fit: cover; border-radius: 14px; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--burgundy); color: #fff;
+    font-family: var(--font-body); font-weight: 700; font-size: 0.92rem;
+    padding: 13px 26px; border-radius: 100px; text-decoration: none;
+    border: none; cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  .btn:hover { background: var(--burgundy-deep); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(67,2,4,0.25); }
+  .btn.gold { background: var(--gold); color: var(--burgundy-deep); }
+  .btn.gold:hover { background: var(--gold-bright); }
+
+  .feature-dark {
+    background: radial-gradient(circle at 30% 20%, rgba(184,134,11,0.16), transparent 55%), var(--burgundy-deep);
+    color: #fff;
+    border-radius: 24px;
+    padding: 48px 36px;
+    margin-top: 18px;
+    text-align: center;
+  }
+  .feature-dark p { color: rgba(255,255,255,0.78); }
+  .feature-dark .panel.flush { background: #fff; max-width: 560px; margin: 24px auto 0; }
+
+  .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+  .module-tile {
+    background: #fff; border-radius: 18px; padding: 20px;
+    box-shadow: 0 1px 2px rgba(32,21,18,0.04), 0 10px 26px rgba(32,21,18,0.06);
+  }
+  .module-thumb {
+    aspect-ratio: 16/10; border-radius: 12px;
+    background: linear-gradient(135deg, var(--burgundy), var(--burgundy-deep));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px; position: relative;
+  }
+  .module-thumb svg { width: 34px; height: 34px; color: rgba(255,255,255,0.85); }
+  .module-tile h3 { font-family: var(--font-body); font-weight: 700; font-size: 1.02rem; margin: 0 0 6px; color: var(--burgundy); }
+  .module-tile p { font-size: 0.86rem; margin: 0; color: var(--ink-soft); }
+  .module-tag { font-size: 0.72rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .placeholder-note {
+    background: rgba(184,134,11,0.08); border: 1px dashed rgba(184,134,11,0.4);
+    border-radius: 14px; padding: 20px; text-align: center; margin-top: 18px;
+  }
+  .placeholder-note strong { color: var(--burgundy); }
+
+  .mini-faq { margin-top: 18px; }
+  .mini-faq details {
+    background: #fff; border-radius: 14px; margin-bottom: 10px;
+    box-shadow: 0 1px 2px rgba(32,21,18,0.04), 0 8px 20px rgba(32,21,18,0.05);
+    overflow: hidden;
+  }
+  .mini-faq summary {
+    padding: 16px 20px; cursor: pointer; font-weight: 700; color: var(--burgundy);
+    list-style: none; display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.96rem;
+  }
+  .mini-faq summary::-webkit-details-marker { display: none; }
+  .mini-faq summary::after {
+    content: '+'; font-size: 1.3rem; color: var(--gold); font-weight: 400;
+    margin-left: 12px; flex-shrink: 0; transition: transform 0.25s ease;
+  }
+  .mini-faq details[open] summary::after { transform: rotate(45deg); }
+  .mini-faq .a { padding: 0 20px 18px; color: var(--ink-soft); font-size: 0.92rem; }
+  .mini-faq .a p:last-child { margin-bottom: 0; }
+  .mini-faq .a a { color: var(--burgundy); font-weight: 700; }
+
+  footer {
+    text-align: center; padding: 48px 28px 60px;
+    font-size: 0.85rem; color: var(--ink-soft);
+  }
+  footer a { color: var(--burgundy); font-weight: 700; text-decoration: none; }
+
+  @media (max-width: 720px) {
+    .photo-row, .module-grid { grid-template-columns: 1fr; }
+    .journey-step { gap: 18px; }
+    .rail { width: 36px; }
+    .dot { width: 36px; height: 36px; font-size: 1rem; }
+    .panel { padding: 22px; }
+    .feature-dark { padding: 34px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="nav-row">
-    <a href="index.html" class="nav-logo"><img src="logo-dark.png" alt="New Zion Baptist Church"></a>
-    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
-    <ul class="nav-links">
-      <li><a href="index.html" class="">Main Site</a></li>
-      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
-    </ul>
+<nav class="top-nav">
+  <span class="brand">New Zion</span>
+  <div class="links">
+    <a href="index.html">Main Site</a>
+    <a href="lifeline.html">Need Help?</a>
   </div>
-</header>
+</nav>
 
-<section class="page-hero" style="text-align:center; border-bottom-color:var(--gold);">
-  <div class="container">
-    <span class="eyebrow" style="justify-content:center;">Welcome Home</span>
-    <h1>You Belong Here Now.</h1>
-    <p style="max-width:56ch; margin:0 auto;">We are so glad you've decided to unite with New Zion Baptist Church. This page will walk you through everything that comes next, at your own pace.</p>
-  </div>
+<section class="hero">
+  <h1>You belong here now.</h1>
+  <p>We are so glad you've decided to unite with New Zion Baptist Church. Here's everything that comes next, at your own pace.</p>
 </section>
 
-<!-- STEP 1: MEMBER INFO FORM -->
-<section id="get-started">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow" style="justify-content:center;">Let's Start Here</span>
-      <h2>Tell Us About Yourself</h2>
-      <p style="max-width:56ch; margin:0 auto;">This is the official first step of joining our church family. Fill this out, and everything else on this page will make even more sense.</p>
-    </div>
-    <div class="card" style="max-width:640px; margin:0 auto; padding:0; overflow:hidden; border-top-color:var(--gold);">
-      <iframe
-        src="https://docs.google.com/forms/d/1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs/viewform?embedded=true"
-        width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0"
-        title="New Zion Member Information Form" style="display:block;">
-        Loading&hellip;
-      </iframe>
-    </div>
-  </div>
-</section>
+<div class="journey">
 
-<!-- STEP 2: WHAT JUST HAPPENED -->
-<section class="section-alt">
-  <div class="container grid grid-2" style="align-items:center;">
-    <div>
-      <span class="eyebrow">What Just Happened?</span>
-      <h2>You Made a Decision That Matters</h2>
+  <div class="journey-step" data-step="1">
+    <div class="rail"><div class="dot">1</div><div class="connector"></div></div>
+    <div class="step-body">
+      <div class="step-label">What just happened?</div>
+      <h2>You made a decision that matters</h2>
       <p>What you just did was not paperwork. You told God, and this church, that you want to belong, not just attend. That's a meaningful step, and we don't take it lightly, and neither should you.</p>
       <p>The Bible describes the local church as a family, a body, a household of faith, not a building you visit, but a people you belong to.</p>
-      <div class="scripture-pull">
-        <p>&ldquo;For as in one body we have many members, and the members do not all have the same function, so we, though many, are one body in Christ, and individually members one of another.&rdquo;</p>
+      <div class="quote-block">
+        <p>"For as in one body we have many members, and the members do not all have the same function, so we, though many, are one body in Christ, and individually members one of another."</p>
         <cite>Romans 12:4&ndash;5</cite>
       </div>
       <p>That means your presence here matters. Not as a spectator, but as a member of the body, with a real part to play.</p>
     </div>
-    <div class="arch-frame small has-photo">
-      <img src="church-building.png" alt="New Zion Baptist Church">
-    </div>
   </div>
-</section>
 
-<!-- STEP 3: MEET YOUR FAMILY -->
-<section>
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow" style="justify-content:center;">Meet Your Family</span>
-      <h2>You're Not Doing This Alone</h2>
-      <p style="max-width:56ch; margin:0 auto;">New Zion is led by people who genuinely want to know you, not just know your name.</p>
-    </div>
-    <div class="grid grid-3" style="margin-bottom:30px;">
-      <div class="arch-frame small has-photo"><img src="pastor-parker.jpg" alt="Rev. Lloyd Parker, Jr."></div>
-      <div class="arch-frame small has-photo"><img src="pastor-certain.png" alt="Rev. Major L. Certain"></div>
-      <div class="arch-frame small has-photo"><img src="modern-worship.png" alt="New Zion congregation"></div>
-    </div>
-    <div class="text-center" style="text-align:center;">
-      <p style="max-width:56ch; margin:0 auto 20px;">Every ministry at New Zion exists because someone said yes to serving. We'd love for you to find your place too, whenever you're ready, not before.</p>
-      <a href="leadership.html" class="btn btn-outline">Meet Our Leadership</a>
-    </div>
-  </div>
-</section>
-
-<!-- STEP 4: MISSION AND VISION -->
-<section class="section-dark text-center" style="text-align:center;">
-  <div class="container">
-    <span class="eyebrow" style="justify-content:center;">Where We're Going</span>
-    <h2>Our Mission and Vision</h2>
-    <p style="max-width:56ch; margin:0 auto 26px;">Equipping Believers Through the Clear Teaching of God's Word, so they may grow in Christ, walk in truth, and help make disciples. Here's the fuller picture of what that looks like, and how you fit into it.</p>
-    <div class="arch-frame has-photo" style="background:var(--white); max-width:640px; margin:0 auto;">
-      <img src="roadmap.png" alt="New Zion Baptist Church Roadmap, our seven-step discipleship journey">
-    </div>
-  </div>
-</section>
-
-<!-- STEP 5: TRAINING MODULES -->
-<section class="section-alt">
-  <div class="container">
-    <div class="section-head center">
-      <span class="eyebrow" style="justify-content:center;">Getting Grounded</span>
-      <h2>Three Short Videos, Taught by Pastor Parker</h2>
-      <p style="max-width:56ch; margin:0 auto;">No rush, no deadline. Watch these whenever you're ready, in whatever order feels right.</p>
-    </div>
-    <div class="grid grid-3">
-      <div class="card">
-        <span class="card-meta">Module 1</span>
-        <h3 style="margin-bottom:10px;">Now That I'm a Believer</h3>
-        <div class="arch-frame small" style="margin-bottom:14px;">
-          <div class="arch-caption">
-            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-            <span>Video Coming Soon</span>
-          </div>
-        </div>
-        <p style="font-size:0.88rem;">What it means, Biblically, to belong to Christ and to His church.</p>
-      </div>
-      <div class="card" style="border-top-color:var(--gold);">
-        <span class="card-meta">Module 2</span>
-        <h3 style="margin-bottom:10px;">What We Believe</h3>
-        <div class="arch-frame small" style="margin-bottom:14px;">
-          <div class="arch-caption">
-            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-            <span>Video Coming Soon</span>
-          </div>
-        </div>
-        <p style="font-size:0.88rem;">The foundations of Baptist faith and practice, with a look at how other traditions differ.</p>
-      </div>
-      <div class="card">
-        <span class="card-meta">Module 3</span>
-        <h3 style="margin-bottom:10px;">Where Do I Fit In</h3>
-        <div class="arch-frame small" style="margin-bottom:14px;">
-          <div class="arch-caption">
-            <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-            <span>Video Coming Soon</span>
-          </div>
-        </div>
-        <p style="font-size:0.88rem;">Real, concrete ways to plug in, and the opportunities already waiting for you.</p>
+  <div class="journey-step" data-step="2">
+    <div class="rail"><div class="dot">2</div><div class="connector"></div></div>
+    <div class="step-body">
+      <div class="step-label">Let's make it official</div>
+      <h2>Tell us about yourself</h2>
+      <p>Now that you know what this means, let's get you into our church family officially. Fill this out, and we'll take it from there.</p>
+      <div class="panel flush">
+        <iframe
+          src="https://docs.google.com/forms/d/1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs/viewform?embedded=true"
+          width="100%" height="1000" frameborder="0" marginheight="0" marginwidth="0"
+          title="New Zion Member Information Form" style="display:block;">
+          Loading&hellip;
+        </iframe>
       </div>
     </div>
   </div>
-</section>
 
-<!-- STEP 6: CONNECT PERSONALLY -->
-<section class="text-center" style="text-align:center;">
-  <div class="container">
-    <span class="eyebrow" style="justify-content:center;">One More Thing</span>
-    <h2>Let's Actually Connect</h2>
-    <p style="max-width:52ch; margin:0 auto 24px;">I'd love to hear from you personally, a question, an introduction, anything at all. This goes straight to me.</p>
-    <!-- MailerLite Universal -->
-    <script>
-        (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-        .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-        n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-        (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-        ml('account', '2591296');
-    </script>
-    <!-- End MailerLite Universal -->
-    <div class="card" style="max-width:480px; margin:0 auto; padding:0; overflow:hidden; border-top-color:var(--gold);">
-      <!-- MailerLite Embed -->
-      <div class="ml-embedded" data-form="fxQmIn"></div>
+  <div class="journey-step" data-step="3">
+    <div class="rail"><div class="dot">3</div><div class="connector"></div></div>
+    <div class="step-body">
+      <div class="step-label">Meet your family</div>
+      <h2>You're not doing this alone</h2>
+      <p>New Zion isn't just a pastor and a pulpit, it's every person who walks through those doors. We'd love for you to actually get to know them, not just see a name on a bulletin.</p>
+      <div class="photo-row">
+        <img src="modern-worship.png" alt="New Zion congregation" style="grid-column: span 3; height:220px;">
+      </div>
+      <p>Take a look through our family, faces and names, so the next time you're here, you're not just seeing strangers, you're seeing people you already know a little.</p>
+      <a href="family-directory.html" class="btn gold">See the family directory</a>
     </div>
   </div>
-</section>
 
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-bottom" style="border-top:none; padding-top:0;">
-      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
-      <a href="index.html">&larr; Back to the Main Site</a>
+  <div class="journey-step" data-step="4">
+    <div class="rail"><div class="dot">4</div><div class="connector"></div></div>
+    <div class="step-body">
+      <div class="step-label">Where we're going</div>
+      <h2>Our mission and vision</h2>
+      <div class="feature-dark">
+        <h2 style="color:#fff;">Equipping believers through the clear teaching of God's Word</h2>
+        <p style="max-width:52ch; margin:0 auto;">So they may grow in Christ, walk in truth, and help make disciples. Here's the fuller picture of what that looks like, and how you fit into it.</p>
+        <div class="panel flush">
+          <img src="roadmap.png" alt="New Zion Baptist Church Roadmap, our seven-step discipleship journey">
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="journey-step" data-step="5">
+    <div class="rail"><div class="dot">5</div><div class="connector"></div></div>
+    <div class="step-body">
+      <div class="step-label">Getting grounded</div>
+      <h2>Three short videos, taught by Pastor Parker</h2>
+      <p>No rush, no deadline. Watch these whenever you're ready, in whatever order feels right.</p>
+      <div class="module-grid">
+        <div class="module-tile">
+          <div class="module-thumb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="module-tag">Module 1</span>
+          <h3>Now That I'm a Believer</h3>
+          <p>What it means, biblically, to belong to Christ and to His church.</p>
+        </div>
+        <div class="module-tile">
+          <div class="module-thumb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="module-tag">Module 2</span>
+          <h3>What We Believe</h3>
+          <p>Foundations of Baptist faith and practice, with a look at other traditions.</p>
+        </div>
+        <div class="module-tile">
+          <div class="module-thumb"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="module-tag">Module 3</span>
+          <h3>Where Do I Fit In</h3>
+          <p>Real, concrete ways to plug in, and opportunities already waiting for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="journey-step" data-step="5b" style="align-items:flex-start;">
+    <div class="rail" style="visibility:hidden;"><div class="dot">&nbsp;</div><div class="connector"></div></div>
+    <div class="step-body" style="padding-bottom:24px;">
+      <div class="step-label">A few quick answers</div>
+      <h2>Common Questions</h2>
+      <div class="mini-faq">
+        <details>
+          <summary>What are your service times?</summary>
+          <div class="a"><p><strong>Sunday Worship:</strong> 11:15 AM. <strong>Wednesday Bible Study:</strong> 7:00&ndash;8:00 PM, online via Zoom.</p></div>
+        </details>
+        <details>
+          <summary>Where are you located?</summary>
+          <div class="a"><p>5400 Call Place SE, Washington, D.C. Street parking is available, and a step-free entrance too, just use it freely.</p></div>
+        </details>
+        <details>
+          <summary>Can I invite a friend?</summary>
+          <div class="a"><p>Absolutely, anytime. Sunday worship or Wednesday Bible Study are both easy, low-pressure ways for someone to see what New Zion is like.</p></div>
+        </details>
+        <details>
+          <summary>How do I share my faith with someone?</summary>
+          <div class="a"><p>Start with your own story. When it's time to explain the gospel itself, our <a href="romanroad.html">Roman Road to Salvation</a> page walks through it clearly, Scripture by Scripture.</p></div>
+        </details>
+        <details>
+          <summary>Is it better to worship online or in person?</summary>
+          <div class="a"><p>Both are wonderful. We just want to see you regularly, whichever fits your season of life.</p></div>
+        </details>
+        <details>
+          <summary>How do I connect to Givelify?</summary>
+          <div class="a"><p>Visit <a href="https://giv.li/5e28vt" target="_blank">giv.li/5e28vt</a> or download the Givelify app and search New Zion Baptist Church.</p></div>
+        </details>
+      </div>
+      <p style="margin-top:16px;"><a href="faq.html" style="color:var(--burgundy); font-weight:700;">See the full FAQ &rarr;</a></p>
+    </div>
+  </div>
+
+  <div class="journey-step" data-step="6">
+    <div class="rail"><div class="dot">6</div><div class="connector"></div></div>
+    <div class="step-body">
+      <div class="step-label">Finished the videos?</div>
+      <h2>Let us know you're done</h2>
+      <p>No test, no pressure, just a quick note so we know you've made it through. We're cheering you on.</p>
+      <div class="placeholder-note">
+        <strong>Form coming soon.</strong> A simple way to let us know you've completed all three modules will appear here shortly.
+      </div>
+    </div>
+  </div>
+
+  <div class="journey-step" data-step="7">
+    <div class="rail"><div class="dot">7</div></div>
+    <div class="step-body">
+      <div class="step-label">One more thing</div>
+      <h2>Let's actually connect</h2>
+      <p>I'd love to hear from you personally, a question, an introduction, anything at all. This goes straight to me.</p>
+      <!-- MailerLite Universal -->
+      <script>
+          (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+          .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+          n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+          (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+          ml('account', '2591296');
+      </script>
+      <!-- End MailerLite Universal -->
+      <div class="panel flush" style="max-width:480px;">
+        <!-- MailerLite Embed -->
+        <div class="ml-embedded" data-form="fxQmIn"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  &copy; <span id="year"></span> New Zion Baptist Church. All rights reserved. &nbsp;&middot;&nbsp; <a href="index.html">Back to the Main Site</a>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
-  var toggle = document.querySelector('.nav-toggle');
-  var links = document.querySelector('.nav-links');
-  if (toggle && links) {
-    toggle.addEventListener('click', function () {
-      links.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
-    });
+
+  var steps = document.querySelectorAll('.journey-step');
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-lit');
+        }
+      });
+    }, { threshold: 0.35 });
+    steps.forEach(function (step) { observer.observe(step); });
+  } else {
+    steps.forEach(function (step) { step.classList.add('is-lit'); });
   }
 </script>
 

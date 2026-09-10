@@ -350,6 +350,25 @@ footer.site-footer { background: var(--burgundy-deep); color: rgba(245,240,232,0
 .nav-icon-circle:hover { background: var(--gold); color: var(--white); }
 .nav-icon-circle svg { width: 15px; height: 15px; }
 
+/* ---------- FAQ accordion ---------- */
+.faq-item {
+  background: var(--white); border: 1px solid var(--border); border-radius: 4px;
+  margin-bottom: 12px; overflow: hidden;
+}
+.faq-item summary {
+  padding: 18px 22px; cursor: pointer; font-weight: 700; color: var(--burgundy);
+  list-style: none; display: flex; justify-content: space-between; align-items: center;
+  font-size: 1rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; font-size: 1.4rem; color: var(--gold); font-weight: 400;
+  margin-left: 12px; flex-shrink: 0; transition: transform 0.25s ease;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item .faq-answer { padding: 0 22px 20px; color: var(--gray); }
+.faq-item .faq-answer p:last-child { margin-bottom: 0; }
+
 @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

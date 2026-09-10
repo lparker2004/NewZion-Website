@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add New Member | New Zion Baptist Church</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo"><img src="logo-dark.png" alt="New Zion Baptist Church"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="members.html" class="">Members Home</a></li>
+      <li><a href="index.html" class="">Main Site</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="page-hero" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">Add New Member</span>
+    <h1>Add New Member</h1>
+    <p style="max-width:56ch; margin:0 auto;">Use this right when someone tells you they want to join. A quick record here kicks off their welcome email automatically, so no one falls through the cracks.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="card" style="max-width:680px; margin:0 auto; padding:0; overflow:hidden; border-top-color:var(--gold);">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIT35K-5jBwaDJbRGwbAUSNiGQ7Td2P6MOeLd4FqlBLd-mIg/viewform?embedded=true" width="100%" height="1543" frameborder="0" marginheight="0" marginwidth="0" title="Add New Member">
+        Loading&hellip;
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0;">
+      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
+      <a href="members.html">&larr; Back to Members Home</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+    });
+  }
+</script>
+
+</body>
+</html>

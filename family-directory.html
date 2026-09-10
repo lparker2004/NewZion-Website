@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Family Directory | New Zion Baptist Church</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="style-v2.css">
+</head>
+<body>
+
+<div class="gate-overlay" id="gate-overlay">
+  <div class="gate-box">
+    <span class="eyebrow" style="justify-content:center;">Family Directory</span>
+    <h2 style="margin-bottom:6px;">Enter Password</h2>
+    <p style="font-size:0.88rem; margin-bottom:0;">This page is for New Zion members only.</p>
+    <input type="password" id="gate-password" placeholder="Password" autocomplete="off">
+    <div class="gate-error" id="gate-error"></div>
+    <button class="btn btn-burgundy" style="width:100%; justify-content:center;" onclick="checkGatePassword()">Enter</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="nav-row">
+    <a href="index.html" class="nav-logo"><img src="logo-dark.png" alt="New Zion Baptist Church"></a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+    <ul class="nav-links">
+      <li><a href="members.html" class="">Members Home</a></li>
+      <li><a href="index.html" class="">Main Site</a></li>
+      <li><a href="lifeline.html" class="lifeline-link">Need Help?</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="gated-content" id="gated-content">
+
+<section class="page-hero" style="text-align:center;">
+  <div class="container">
+    <span class="eyebrow" style="justify-content:center;">Get to Know Everyone</span>
+    <h1>Family Directory</h1>
+    <p style="max-width:56ch; margin:0 auto;">Faces and names, so no one at New Zion feels like a stranger. This is still being built, with real photos from real members, so it reflects everyone, not just a few familiar faces.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="card" style="max-width:640px; margin:0 auto; text-align:center; border-top-color:var(--gold);">
+      <p style="font-size:0.95rem;">
+        <strong>This directory is under construction.</strong> We're gathering photos and names from across our whole congregation so this page truly represents our family, not just our most visible members. If you'd like to be included, or want to help us collect photos, reach out to the church office.
+      </p>
+      <a href="mailto:info@newzionbaptist.org" class="btn btn-burgundy" style="margin-top:16px;">Email the Church Office</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; padding-top:0;">
+      <p>&copy; <span id="year"></span> New Zion Baptist Church. All rights reserved.</p>
+      <a href="members.html">&larr; Back to Members Home</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /gated-content -->
+
+<script>
+  var GATE_HASH = "347b96de663edbd90b4b674fe8bb672cbf4587f8e7a49a4a925769f174e15efe";
+
+  async function sha256(text) {
+    var enc = new TextEncoder().encode(text);
+    var buf = await crypto.subtle.digest('SHA-256', enc);
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  async function checkGatePassword() {
+    var input = document.getElementById('gate-password').value;
+    var hash = await sha256(input);
+    var errorEl = document.getElementById('gate-error');
+    if (hash === GATE_HASH) {
+      document.getElementById('gate-overlay').style.display = 'none';
+      document.getElementById('gated-content').classList.add('unlocked');
+      sessionStorage.setItem('nzbc_member_unlocked', '1');
+    } else {
+      errorEl.textContent = 'Incorrect password. Please try again.';
+      document.getElementById('gate-password').value = '';
+    }
+  }
+
+  document.getElementById('gate-password').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkGatePassword();
+  });
+
+  if (sessionStorage.getItem('nzbc_member_unlocked') === '1') {
+    document.getElementById('gate-overlay').style.display = 'none';
+    document.getElementById('gated-content').classList.add('unlocked');
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function () {
+      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', links.classList.contains('open'));
+    });
+  }
+</script>
+
+</body>
+</html>
