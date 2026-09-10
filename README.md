@@ -1,6 +1,6 @@
 # New Zion Baptist Church — Website
 
-15 pages (12 public + 3 members-only), burgundy/gold design system, hosted on GitHub Pages at newzionbaptist.org.
+16 pages (12 public + 4 members/special-access), burgundy/gold design system, hosted on GitHub Pages at newzionbaptist.org.
 
 ## Public Pages
 | File | Purpose |
@@ -19,67 +19,67 @@
 | `romanroad.html` | The Roman Road to Salvation — dedicated gospel page, with a testimony-sharing CTA |
 
 ## YouTube playlists
-The archive is segmented into two playlists rather than one mixed feed:
 - **Sunday Worship:** `https://www.youtube.com/playlist?list=PLS5Uqnbsv-jI`
 - **Bible Studies:** `https://www.youtube.com/playlist?list=PLOMcjaopCp3o`
 
 `teaching.html` embeds both side by side. `worship.html`'s archive links point specifically at the Sunday Worship playlist. New videos need to be manually added to the correct playlist in YouTube Studio when uploaded.
 
-## Members-Only Pages
-Reachable via the small gold cross-in-circle icon in the main nav (right after "Need Help?" on every public page), or by typing the URL directly. None of these three are linked in the main public nav or footer, by design.
+## Members-Only Pages (password gated)
+Reachable via the small gold cross-in-circle icon in the main nav, or by typing the URL directly. Not linked in the main public nav or footer.
 
 ### members.html — the hub
-A welcome page, not just a form. Structure: welcome photo + greeting, a "Get Connected" card grid (Update My Info, Church Calendar, Support Request, Teen Corner, Children + Parents), a "Useful Links" row (Give via Givelify, Bible Study playlist, Sunday Sermons playlist), then the member info update form itself further down the same page (anchored at `#update-info`).
-
-**Still intentionally not included:** a Ministries page and a photo Gallery, neither exists yet. Per an earlier design decision, the hub avoids shipping empty "coming soon" placeholder cards, add a card only once its destination page is real.
-
-**Member Info Update Form:** embedded at `#update-info`. Backed by a Google Form (ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs`) linked to a Google Sheet in your Workspace, covering Full Name, Address, Mobile Phone, Email Address, Date Joined, and Shirt Size.
-
-**Data flow (lives entirely outside this repo, in your Google Workspace):** every submission lands in the Sheet's default "Form Responses" tab as a raw, append-only change log. A separate "Member Log" tab is the actual formal roster. An AI Executive Assistant (not part of this website) compares each new submission against the Member Log by matching Name + Mobile Phone, updates the matching row if found, or adds a new row if not.
+Welcome photo + greeting, a "Get Connected" card grid (Update My Info, Church Calendar, Support Request, Teen Corner, Children + Parents), a "Useful Links" row (Give, Bible Study playlist, Sunday Sermons playlist), then the member info update form itself at `#update-info`.
 
 ### teens.html — Teen Corner
-Its own gated page (same password/hash as members.html), reachable only from the Members hub. Bible resource links, and a private question form (FormSubmit, goes to info@newzionbaptist.org) where a teen can ask anything, optionally anonymously, framed as safe and judgment-free, explicitly not a public forum. Simplified header/footer (Members Home / Main Site / Need Help links only, not the full public nav).
+Its own gate, own password (see below). Bible resources, a private question form to Pastor Parker (FormSubmit).
 
 ### children.html — Children + Parents
-Also its own gated page. Bible resource links, and a question-submission form that **requires** a parent's name and email (child's name is optional), so a parent is structurally part of every submission, not just assumed. Coloring pages and crossword puzzles are marked "coming soon", no downloadable assets exist yet. When ready, they can be added as simple downloads directly on this page; since the whole page already sits behind the password gate, they don't need any separate gating.
+Its own gate, shares the members.html password. Bible resources, a question form requiring a parent's name and email. Coloring pages/crosswords marked "coming soon," no assets yet.
 
-## Password gate mechanism
-All three members-only pages use the same underlying mechanism (SHA-256 hash stored in the page's JavaScript, never plain text), but **teens.html now has its own distinct password**, separate from members.html and children.html:
-- `members.html` and `children.html` share one password: `NewZion2026!`
-- `teens.html` has its own separate password: `NZT4Christ2026!`
+**Passwords:** `members.html` and `children.html` share `NewZion2026!`. `teens.html` has its own separate password, `NZT4Christ2026!`, with its own separate sessionStorage key so the two don't cross-unlock each other.
 
-Each page also has its own separate sessionStorage key (`nzbc_member_unlocked` vs `nzbc_teen_unlocked`), so entering one password does not also unlock the other, they're genuinely independent even though members.html and children.html happen to currently share the same password value.
+**Important honesty note:** because this GitHub repo is public, these files are technically visible in the repo's file list. This is a soft privacy gate, not real security. No highly sensitive info belongs on these pages.
 
-To change any password: ask Claude to generate a new SHA-256 hash, then update the `GATE_HASH` value near the bottom of the relevant file(s). If you want members.html and children.html to keep sharing one password, update both together; teens.html can always be changed independently.
+## welcomehome.html — New Member Experience (special access, no password)
+A different access model from the other three: **no password gate at all**, instead a `noindex, nofollow` meta tag keeps it out of search engines. Not linked anywhere on the public site or the members hub, by design, the only way in is a direct link or QR code that Lloyd hands out personally after a real conversation about joining. Simplified header (Main Site / Need Help only), same as the other special pages.
 
-**Important honesty note:** because this GitHub repository is public (required for free GitHub Pages), these files are technically visible to anyone who browses the repo's file list on GitHub itself. This is a **soft privacy gate**, not real security. Do not put highly sensitive info (SSNs, financial details, etc.) on any of these pages.
+**Page flow, in order:**
+1. The Member Info Update Form (same Google Form as members.html), framed as the official "I'm joining" moment
+2. "What Just Happened?" — the decision explained personally, plus the biblical concept of the local church
+3. "Meet Your Family" — photos of leadership and the congregation, a link to the Leadership page
+4. Mission and Vision, illustrated with the Roadmap graphic (reused from about.html)
+5. Three training video modules (Now That I'm a Believer / What We Believe / Where Do I Fit In), currently **placeholder slots**, no videos recorded yet
+6. "Connect With Me Personally" — currently a **placeholder card**, pending a dedicated new Google Form
+
+**Two outstanding action items before this page is fully live:**
+- **Add a "Where do you feel led to serve?" field to the existing Member Info Google Form** (ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs`). This is done entirely on Google's side, once added, it automatically appears in every embed of that form across the site, no code changes needed here.
+- **Create a new, separate Google Form for "Connect With Me Personally"** (Sheet-based, not email-based, matching the pattern of the other Google Forms on this site rather than a FormSubmit/email one). Once created, share the embed code and it replaces the placeholder card in Step 6.
+
+Once the three video modules are recorded (YouTube, hosted by Lloyd), each placeholder `.arch-frame` block in Step 5 gets replaced with a real `<iframe>` embed, same pattern used elsewhere on the site.
+
+**The "feeder" welcome-email automation** (staff marks someone "New Member" on an intake sheet, an automation emails them the link to this page) is being built entirely by Lloyd's own ChatGPT-based assistant, reusing an existing form-to-sheet-to-automation pipeline he already has. No website-side work needed for that piece, just make sure the automation's email template points at the final `welcomehome.html` URL once this page is live.
 
 ## Announcements on the Events page
-The right-hand column on `events.html` holds announcement/flyer cards. The Installation Service flyer is the first entry, click it to see the full flyer via the site's lightbox. To add a new announcement, copy that card's HTML block, swap in the new flyer image, title, date, and blurb.
+The right-hand column on `events.html` holds announcement/flyer cards. To add one, copy the Installation Service card's HTML block and swap in the new flyer, title, date, and blurb.
 
-`style-v2.css` is the one shared stylesheet for all pages. Every image referenced by the HTML files must stay in this same folder, don't move things into subfolders.
+`style-v2.css` is the one shared stylesheet for all pages. Every image referenced by the HTML files must stay in this same folder.
 
 ## Site-wide elements baked into every public page
-Duplicated in every public HTML file (no templating on a static site):
-1. **Header/nav** — logo, nav links, the members-login icon, mobile hamburger menu
-2. **Footer** — logo, Navigate links, address/service times, copyright
-3. **Bottom-of-page script block** — the lightbox, the floating "Path to Salvation" button (hidden only on `romanroad.html`), the mobile nav toggle, auto-updating copyright year
-
-The three members-only pages each have their own simpler script (the password gate) and do not include the public site's lightbox or floating salvation button.
+Duplicated in every public HTML file (no templating on a static site): header/nav, footer, and a bottom-of-page script block (lightbox, floating "Path to Salvation" button, mobile nav toggle, copyright year). The members-only and special-access pages each have their own simpler scripts and don't include the public site's lightbox or floating button.
 
 ## Known open item
 The Home page's "Someone Is Here" section still has an older version of a story that was intentionally removed from `lifeline.html`. Leadership is reviewing the site and this will be reconciled along with their other feedback.
 
 ## Future roadmap (discussed, not yet built)
-See conversation history / Claude's memory of this project for full detail. Summary: a Ministries page (shared interest form with a ministry dropdown), a custom Spiritual Gifts inventory (5 modules, teach-then-assess, synchronized across Romans 12/1 Corinthians 12/Ephesians 4), a New Member Experience course (self-paced, form-based module unlocking, completion certificate, "right hand of fellowship"), a rule-based FAQ widget (explicitly not an AI chatbot), and a member-side photo Gallery. Individual member logins/portals were explicitly deferred indefinitely in favor of the current human-gatekeeper model.
+See conversation history / Claude's memory of this project for full detail. Summary: a Ministries page (shared interest form with a ministry dropdown), a custom Spiritual Gifts inventory (5 modules, teach-then-assess, synchronized across Romans 12/1 Corinthians 12/Ephesians 4) as a separate optional deeper track, a rule-based FAQ widget (explicitly not an AI chatbot), and a member-side photo Gallery (with a planned photo-submission mechanism to address representation balance across the congregation). Individual member logins/portals were explicitly deferred indefinitely in favor of the current human-gatekeeper model.
 
 ## Style notes
 - No em dashes anywhere on the site (converted to commas sitewide).
 - Every `.eyebrow` label shows a small gold cross icon, except the homepage hero eyebrow line (`.eyebrow.no-mark`).
-- Main nav is burgundy background with white text; "Need Help?" is a solid gold box; the header logo uses `logo-dark.png` (burgundy-background variant) so it blends into the nav rather than sitting in a white box.
+- Main nav is burgundy background with white text; "Need Help?" is a solid gold box; the header logo uses `logo-dark.png` so it blends into the nav.
 
 ## Testimonies from the Roman Road page
-"Share My Testimony" links to `connect.html#contact`, with "I Accepted Christ, I Want to Share My Testimony" as a subject option in that form's dropdown.
+"Share My Testimony" links to `connect.html#contact`, with "I Accepted Christ, I Want to Share My Testimony" as a subject option.
 
 ## Key embeds and IDs
 - **YouTube channel:** `@NewZionBaptistChurch-DC`
@@ -87,7 +87,7 @@ See conversation history / Claude's memory of this project for full detail. Summ
 - **Givelify:** `https://giv.li/5e28vt`
 - **MailerLite account:** `2591296` — forms `ZeXFLS` (Stay Connected) and `wmf85O` (Prayer Request), both on `connect.html`
 - **Lifeline private message form:** Google Form ID `1FAIpQLSeteKXvgcA6kc_3dLxLyKvsEX2_I9eeAePcsgtYcRd352gr8w`
-- **Member Info Update Form:** Google Form ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs`
+- **Member Info Update Form:** Google Form ID `1LouyGlf3NNJuyqqueFGzJuC-XAf77PwAITV1qZXG5bs` (also embedded on welcomehome.html)
 - **Zoom (Wednesday Bible Study):** on `worship.html` and `teaching.html`
 - **Google Calendar (Events):** `c_d55e8604353038a9c5b3f100e73ed22a15018a358ee84ace83188ab5f539ce88@group.calendar.google.com`
 
