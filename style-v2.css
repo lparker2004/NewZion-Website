@@ -372,3 +372,9 @@ footer.site-footer { background: var(--burgundy-deep); color: rgba(245,240,232,0
 @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+.footer-social { display: inline-flex; align-items: center; gap: 7px; color: var(--gold-light); }
+.footer-social svg { flex: none; }
+.footer-social:hover { color: #fff; }
+.ig-follow { display: inline-flex; align-items: center; gap: 10px; }
+.ig-follow svg { flex: none; }

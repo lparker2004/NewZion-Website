@@ -235,7 +235,51 @@
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; scroll-behavior: auto !important; }
   }
+
+  /* What Just Happened: guided paths */
+  .path-choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 22px 0 8px; max-width: 760px; }
+  .path-choice {
+    text-align: left; font-family: var(--font-body); cursor: pointer;
+    background: #fff; border: 1.5px solid rgba(67,2,4,0.15); border-radius: 12px;
+    padding: 16px 18px; color: var(--ink); transition: all 0.2s;
+  }
+  .path-choice strong { display: block; color: var(--burgundy); font-size: 1rem; margin-bottom: 3px; }
+  .path-choice span { font-size: 0.86rem; color: var(--ink-soft); }
+  .path-choice:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(67,2,4,0.08); }
+  .path-choice[aria-pressed="true"] { border-color: var(--gold); background: rgba(184,134,11,0.09); box-shadow: inset 0 0 0 1px var(--gold); }
+  .path-choice:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 2px; }
+  .path { margin-top: 26px; }
+  .beat { margin-bottom: 26px; animation: beatIn 0.6s ease both; }
+  .beat h3 { font-family: var(--font-display); font-size: 1.6rem; color: var(--burgundy); margin: 0 0 8px; line-height: 1.2; }
+  .plain { background: #fff; border-radius: 12px; border: 1px solid rgba(184,134,11,0.3); padding: 14px 18px 4px; margin: 4px 0 8px; max-width: 62ch; }
+  .plain-tag { font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); }
+  .plain p { color: var(--ink); margin: 6px 0 12px; }
+  .celebrate { text-align: center; padding: 26px 18px; margin: 14px 0 0; border-radius: 14px; background: linear-gradient(135deg, var(--burgundy), var(--burgundy-deep)); max-width: 62ch; }
+  .celebrate h3 { color: var(--gold-bright); text-transform: uppercase; letter-spacing: 0.04em; font-size: 1.5rem; margin: 0 0 4px; }
+  .celebrate p { color: #fff; font-family: var(--font-display); font-size: 2.1rem; font-weight: 700; margin: 0 auto; }
+  .path-next { margin: 6px 0 4px; }
+  .path-cta { margin-top: 10px; padding-top: 18px; border-top: 1px solid rgba(67,2,4,0.12); }
+  .kjv-note { font-size: 0.76rem !important; color: var(--ink-soft); margin-top: 18px; }
+  .js .path-cta { display: none; }
+  .js .path-cta.is-shown { display: block; animation: beatIn 0.6s ease both; }
+  .js .beat { display: none; }
+  .js .beat.is-shown { display: block; }
+  @keyframes beatIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .beat, .js .path-cta.is-shown { animation: none; } html { scroll-behavior: auto; } }
+  @media (max-width: 640px) { .path-choices { grid-template-columns: 1fr; } }
+
+  .path-art { margin: 0 0 14px; opacity: 0.9; }
+  .path-art .arch { stroke: var(--burgundy); stroke-opacity: 0.35; stroke-width: 1.6; }
+  .path-art .ink { stroke: var(--gold); stroke-width: 1.8; }
+  .bg-link { margin-left: 8px; font-weight: 600; color: var(--ink-soft); text-decoration: underline; text-underline-offset: 2px; }
+  .bg-link:hover { color: var(--burgundy); }
+  .kjv-note a { color: var(--burgundy); font-weight: 700; }
+  /* calmer celebration */
+  .celebrate { background: rgba(184,134,11,0.10) !important; border: 1px solid rgba(184,134,11,0.45); text-align: left !important; padding: 18px 22px !important; }
+  .celebrate h3 { color: var(--burgundy) !important; text-transform: none !important; letter-spacing: 0 !important; font-size: 1.45rem !important; margin: 0 0 2px !important; }
+  .celebrate p { color: var(--burgundy) !important; font-size: 1.15rem !important; font-weight: 500 !important; margin: 0 !important; }
 </style>
+<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
 
@@ -259,17 +303,24 @@
     <div class="step-body">
       <div class="step-label">What just happened?</div>
       <h2>You made a decision that matters</h2>
-      <p>What you just did was not paperwork. You told God, and this church, that you want to belong, not just attend. That's a meaningful step, and we don't take it lightly, and neither should you.</p>
-      <p>The Bible describes the local church as a family, a body, a household of faith, not a building you visit, but a people you belong to.</p>
-      <div class="quote-block">
-        <p>"For as in one body we have many members, and the members do not all have the same function, so we, though many, are one body in Christ, and individually members one of another."</p>
-        <cite>Romans 12:4&ndash;5</cite>
+      <p>By reaching out to unite with this church, you took a real step. Take a moment with it. Which of these sounds most like you? We will walk you through it, one verse at a time, at your own pace.</p>
+      <div class="path-choices" role="group" aria-label="Choose what describes you">
+        <button type="button" class="path-choice" data-path="believer"><strong>I just gave my life to Christ</strong><span>I am a new believer.</span></button>
+        <button type="button" class="path-choice" data-path="returning"><strong>I am coming back</strong><span>It has been a while, or life got hard.</span></button>
+        <button type="button" class="path-choice" data-path="rebaptism"><strong>I would like to be re-baptized</strong><span>Let us talk about what that means.</span></button>
+        <button type="button" class="path-choice" data-path="joining"><strong>I am already a believer</strong><span>I am joining New Zion as my church home.</span></button>
       </div>
-      <p>That means your presence here matters. Not as a spectator, but as a member of the body, with a real part to play.</p>
+      <div class="path-stage" aria-live="polite">
+      <div class="path" id="path-believer" data-path="believer" hidden><div class="path-art" aria-hidden="true"><svg viewBox="0 0 100 124" width="82" height="102" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 118V50a38 38 0 0 1 76 0v68Z" class="arch"/><path d="M30 100a20 20 0 0 1 40 0" class="ink"/><path d="M50 62v-12M31 72l-8-8M69 72l8-8M24 92h-8M76 92h8" class="ink"/><path d="M20 108h60" class="ink"/></svg></div><div class="beat"><h3>Welcome, and congratulations.</h3><p>Let us walk through what God has done in your life, one verse at a time. There is no rush. Read each one, let it sink in, and continue when you are ready.</p></div><div class="beat"><div class="quote-block"><p>For all have sinned, and come short of the glory of God.</p><cite>Romans 3:23 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Romans+3%3A23&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>Every one of us, from the Pastor to the newest member, has sinned. Because of that, we are spiritually unfit to stand in the presence of a holy God. That is the problem none of us could ever fix on our own.</p></div></div><div class="beat"><div class="quote-block"><p>For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life.</p><cite>John 3:16 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=John+3%3A16&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>God created you, and He loves you. He loves all of us. So He sent His Son, Jesus, to take your place and pay the price we owed for our sin.</p></div></div><div class="beat"><div class="quote-block"><p>That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved.</p><cite>Romans 10:9 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Romans+10%3A9&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>If you confessed that Jesus is Lord and believe in your heart that God raised Him from the grave, you are saved.</p></div><div class="celebrate"><h3>This is what you just did today.</h3><p>Congratulations. We are so glad you are here.</p></div></div><div class="beat"><div class="quote-block"><p>And I give unto them eternal life; and they shall never perish, neither shall any man pluck them out of my hand. My Father, which gave them me, is greater than all; and no man is able to pluck them out of my Father's hand.</p><cite>John 10:28&ndash;29 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=John+10%3A28-29&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>Once we are saved, we are always saved. You are in Jesus' hand now, and nothing, and no one, can remove you from it. Not your past, and not your next mistake.</p></div></div><div class="beat"><div class="quote-block"><p>While I was with them in the world, I kept them in thy name: those that thou gavest me I have kept, and none of them is lost</p><cite>John 17:12 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=John+17%3A12&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>This is part of a prayer Jesus prayed for His followers. Those the Father gave Him, He kept, and none of them is lost. If you belong to Him, He is holding on to you, even when you do not feel strong.</p></div></div><div class="beat"><h3>Your next question is probably, &ldquo;What if I sin again?&rdquo;</h3><p>The short answer: you will. We all do. But listen to what God has already said about that.</p><div class="quote-block"><p>If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.</p><cite>1 John 1:9 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=1+John+1%3A9&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>When you fall, do not run from God. Run to Him. Confess it, and He forgives you and cleans you up. His grace is bigger than your next mistake.</p></div></div><div class="path-cta"><p>Take a breath. When you are ready, the next step is simply telling us who you are.</p><a href="#tell-us" class="btn gold">I am ready, take me to the next step</a></div></div>
+      <div class="path" id="path-returning" data-path="returning" hidden><div class="path-art" aria-hidden="true"><svg viewBox="0 0 100 124" width="82" height="102" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 118V50a38 38 0 0 1 76 0v68Z" class="arch"/><path d="M30 118c0-14 40-14 40-28s-30-12-30-26 14-14 14-14" class="ink"/><path d="M50 40v-8M46 36h8" class="ink"/></svg></div><div class="beat"><h3>Welcome back.</h3><p>We are glad you are here. We are not interested in how long you have been away. We want to talk honestly about what it takes to come back, because most of us have been there.</p></div><div class="beat"><h3>Why we pull away</h3><p>When life gets hard, or when we have fallen into things we are not proud of, our instinct is to step back. Guilt whispers that we do not belong in church until we have cleaned ourselves up. That feels like the right response. It is human nature. But it is exactly the opposite of what Christ wants for us.</p></div><div class="beat"><div class="quote-block"><p>For we have not an high priest which cannot be touched with the feeling of our infirmities; but was in all points tempted like as we are, yet without sin. Let us therefore come boldly unto the throne of grace, that we may obtain mercy, and find grace to help in time of need.</p><cite>Hebrews 4:15&ndash;16 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Hebrews+4%3A15-16&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>Jesus knows what you have been through. He walked in our shoes while He was here. You do not have to hide from Him. You are invited to come to Him boldly.</p></div></div><div class="beat"><div class="quote-block"><p>If we confess our sins, he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.</p><cite>1 John 1:9 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=1+John+1%3A9&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>Confess it, and He forgives and cleanses. That road back is always open, and you are standing on it right now.</p></div></div><div class="beat"><h3>Get back on the horse</h3><p>Moving forward takes spiritual muscle: the strength to push past the guilt and keep going. Nobody builds that alone. That is exactly what a church family is for. We are glad to walk with you.</p></div><div class="path-cta"><p>Take a breath. When you are ready, the next step is simply telling us who you are.</p><a href="#tell-us" class="btn gold">I am ready, take me to the next step</a></div></div>
+      <div class="path" id="path-rebaptism" data-path="rebaptism" hidden><div class="path-art" aria-hidden="true"><svg viewBox="0 0 100 124" width="82" height="102" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 118V50a38 38 0 0 1 76 0v68Z" class="arch"/><path d="M24 84c8-8 14 8 26 0s18 8 26 0" class="ink"/><path d="M24 98c8-8 14 8 26 0s18 8 26 0" class="ink"/><path d="M24 70c8-8 14 8 26 0s18 8 26 0" class="ink"/></svg></div><div class="beat"><h3>We are glad to support you.</h3><p>Before you decide, let us look together at what Scripture says about baptism, so you can move forward with peace.</p></div><div class="beat"><div class="quote-block"><p>And Jesus, when he was baptized, went up straightway out of the water: and, lo, the heavens were opened unto him.</p><cite>Matthew 3:16 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Matthew+3%3A16&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>Jesus Himself was baptized. We believe immersion, going fully under the water and coming back up, is the most accurate form of baptism, and it fits what the Bible suggests Jesus experienced.</p></div></div><div class="beat"><div class="quote-block"><p>Know ye not, that so many of us as were baptized into Jesus Christ were baptized into his death? Therefore we are buried with him by baptism into death: that like as Christ was raised up from the dead by the glory of the Father, even so we also should walk in newness of life.</p><cite>Romans 6:3&ndash;4 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Romans+6%3A3-4&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>Baptism is a picture. It is how we publicly identify with Christ: going under shows His death and burial, and coming up shows His resurrection and your new life. It does not give you salvation.</p></div></div><div class="beat"><div class="quote-block"><p>For by grace are ye saved through faith; and that not of yourselves: it is the gift of God: Not of works, lest any man should boast.</p><cite>Ephesians 2:8&ndash;9 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Ephesians+2%3A8-9&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>You were saved the moment you believed. Baptism comes after that. Once saved, always saved. Nothing in Scripture says we must be baptized more than once.</p></div></div><div class="beat"><h3>If something is weighing on you</h3><p>We are happy to support re-baptism, but it is not required. If something is making you feel unworthy or unfit to be in His presence, we would rather pray about that with you first. Tell us on the next page, or speak with Pastor directly.</p></div><div class="path-cta"><p>Take a breath. When you are ready, the next step is simply telling us who you are.</p><a href="#tell-us" class="btn gold">I am ready, take me to the next step</a></div></div>
+      <div class="path" id="path-joining" data-path="joining" hidden><div class="path-art" aria-hidden="true"><svg viewBox="0 0 100 124" width="82" height="102" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 118V50a38 38 0 0 1 76 0v68Z" class="arch"/><path d="M30 118V84l20-18 20 18v34" class="ink"/><path d="M44 118v-18h12v18" class="ink"/><path d="M50 40v-14M44 32h12" class="ink"/></svg></div><div class="beat"><h3>Welcome home.</h3><p>You already know the Lord, and now you have chosen to make New Zion your church home. We are honored.</p></div><div class="beat"><p>The Bible describes the local church as a family, a body, a household of faith. It is not a building you visit. It is a people you belong to.</p><div class="quote-block"><p>For as we have many members in one body, and all members have not the same office: So we, being many, are one body in Christ, and every one members one of another.</p><cite>Romans 12:4&ndash;5 <a class="bg-link" href="https://www.biblegateway.com/passage/?search=Romans+12%3A4-5&version=KJV" target="_blank" rel="noopener">Read it in context on Bible Gateway</a></cite></div><div class="plain"><span class="plain-tag">In plain English</span><p>You are not here to watch from the pews. You are a member of the body, and you have a real part to play.</p></div></div><div class="path-cta"><p>Take a breath. When you are ready, the next step is simply telling us who you are.</p><a href="#tell-us" class="btn gold">I am ready, take me to the next step</a></div></div>
+      </div>
+      <p class="kjv-note">Scripture is quoted from the King James Version. Want to explore on your own while you go through this? <a href="https://www.biblegateway.com/" target="_blank" rel="noopener">Open Bible Gateway</a> in a new tab and read as much as you like.</p>
     </div>
   </div>
 
-  <div class="journey-step" data-step="2">
+  <div class="journey-step" data-step="2" id="tell-us">
     <div class="rail"><div class="dot">2</div><div class="connector"></div></div>
     <div class="step-body">
       <div class="step-label">Let's make it official</div>
@@ -416,7 +467,7 @@
 </div>
 
 <footer>
-  &copy; <span id="year"></span> New Zion Baptist Church. All rights reserved. &nbsp;&middot;&nbsp; <a href="index.html">Back to the Main Site</a>
+  &copy; <span id="year"></span> New Zion Baptist Church. All rights reserved. &nbsp;&middot;&nbsp; <a href="index.html">Back to the Main Site</a> &nbsp;&middot;&nbsp; <a href="https://www.instagram.com/new.zionbaptist.dc/" target="_blank" rel="noopener" aria-label="Follow New Zion on Instagram" style="display:inline-flex;align-items:center;gap:6px;vertical-align:middle;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg><span>@new.zionbaptist.dc</span></a>
 </footer>
 
 <script>
@@ -437,5 +488,43 @@
   }
 </script>
 
+
+<script>
+(function () {
+  var choices = document.querySelectorAll('.path-choice');
+  var paths = document.querySelectorAll('.path');
+  if (!choices.length) return;
+  var map = { believer: 'believer', newbeliever: 'believer', returning: 'returning', rebaptism: 'rebaptism', requestingrebaptism: 'rebaptism', joining: 'joining', transfer: 'joining', transferletter: 'joining', christianexperience: 'joining', casual: 'joining', casualmember: 'joining' };
+  function show(key) {
+    choices.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.path === key ? 'true' : 'false'); });
+    paths.forEach(function (p) {
+      var on = p.dataset.path === key;
+      p.hidden = !on;
+      if (!on) return;
+      var beats = p.querySelectorAll('.beat');
+      var cta = p.querySelector('.path-cta');
+      beats.forEach(function (b, i) { b.classList.toggle('is-shown', i === 0); });
+      cta.classList.remove('is-shown');
+      var old = p.querySelector('.path-next'); if (old) old.remove();
+      var idx = 0;
+      function next() {
+        idx++;
+        beats[idx].classList.add('is-shown');
+        if (idx >= beats.length - 1) { btn.remove(); cta.classList.add('is-shown'); }
+        beats[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      var btn = document.createElement('button');
+      btn.type = 'button'; btn.className = 'btn path-next'; btn.textContent = 'Continue';
+      btn.addEventListener('click', next);
+      if (beats.length > 1) { cta.parentNode.insertBefore(btn, cta); } else { cta.classList.add('is-shown'); }
+    });
+  }
+  choices.forEach(function (c) { c.addEventListener('click', function () { show(c.dataset.path); }); });
+  try {
+    var q = new URLSearchParams(window.location.search).get('path');
+    if (q) { q = q.toLowerCase().replace(/[^a-z]/g, ''); var k = map[q]; if (k) show(k); }
+  } catch (e) {}
+})();
+</script>
 </body>
 </html>
